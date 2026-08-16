@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hayk Karapetyan — React · React Native Developer</title>
+<meta name="description" content="React & React Native developer at Jotform — 11 years building form-builder widgets, dynamic UI and cross-platform mobile apps in JavaScript & TypeScript." />
+<meta name="author" content="Hayk Karapetyan" />
+<meta name="theme-color" content="#07090d" />
+
+<meta property="og:title" content="Hayk Karapetyan — React · React Native Developer" />
+<meta property="og:description" content="React & React Native developer at Jotform — 11 years shipping widgets, dynamic UI and mobile apps." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://usta.am/" />
+<link rel="canonical" href="https://usta.am/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #07090d;
+    --bg-soft: #0d1117;
+    --bg-card: #10151d;
+    --bg-card-2: #141b25;
+    --border: #1c2430;
+    --border-soft: #161d27;
+    --text: #eaeef6;
+    --text-muted: #99a3b3;
+    --text-dim: #5f6b7c;
+    --accent: #61dafb;
+    --accent-2: #60a5fa;
+    --accent-3: #c084fc;
+    --accent-4: #fb7185;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --maxw: 1120px;
+    --shadow: 0 20px 60px -20px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Sora', 'Inter', sans-serif; letter-spacing: -.02em; line-height: 1.15; }
+  a { color: var(--accent); text-decoration: none; transition: color .18s ease, opacity .18s ease; }
+  a:hover { color: var(--accent-2); }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+  /* ---------- Aurora background ---------- */
+  .aurora {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  }
+  .aurora::before, .aurora::after {
+    content: ""; position: absolute; border-radius: 50%;
+    filter: blur(90px); opacity: .5; will-change: transform;
+  }
+  .aurora::before {
+    width: 55vw; height: 55vw; left: -10vw; top: -18vw;
+    background: radial-gradient(circle at 30% 30%, rgba(97,218,251,.32), transparent 62%);
+    animation: float1 22s ease-in-out infinite;
+  }
+  .aurora::after {
+    width: 50vw; height: 50vw; right: -12vw; top: 6vw;
+    background: radial-gradient(circle at 60% 40%, rgba(96,165,250,.32), transparent 62%);
+    animation: float2 26s ease-in-out infinite;
+  }
+  .aurora .blob3 {
+    position: absolute; width: 42vw; height: 42vw; left: 30vw; top: 40vw;
+    border-radius: 50%; filter: blur(100px); opacity: .35;
+    background: radial-gradient(circle at 50% 50%, rgba(192,132,252,.3), transparent 60%);
+    animation: float3 30s ease-in-out infinite;
+  }
+  @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(6vw,4vw) scale(1.12)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-5vw,5vw) scale(1.08)} }
+  @keyframes float3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-4vw,-6vw) scale(1.15)} }
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(7,9,13,.6);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: 'Sora'; font-weight: 700; color: var(--text); }
+  .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.55; transform:scale(.82)} }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { color: var(--text-muted); font-size: 14.5px; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    color: var(--bg) !important; background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    box-shadow: 0 6px 20px -6px var(--accent);
+  }
+  .nav-cta:hover { filter: brightness(1.08); }
+  @media (max-width: 760px){ .nav-links a:not(.nav-cta){ display:none; } }
+
+  /* ---------- Hero ---------- */
+  header.hero { padding: 90px 0 64px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500;
+    color: var(--accent); background: rgba(97,218,251,.08); border: 1px solid rgba(97,218,251,.24);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .pill .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 1.8s infinite; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 800; margin: 0 0 18px;
+    background: linear-gradient(120deg, #fff 20%, #cbd5e1 55%, #7dd3fc 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero .role {
+    font-family: 'JetBrains Mono'; font-size: clamp(1rem, 2.6vw, 1.5rem); font-weight: 500;
+    color: var(--text-muted); min-height: 1.6em; margin-bottom: 22px;
+  }
+  .hero .role .tw { color: var(--accent); }
+  .hero .role .cursor { color: var(--accent-2); animation: blink 1s step-end infinite; font-weight: 400; }
+  @keyframes blink { 50%{opacity:0} }
+  .hero p.lede { font-size: clamp(1rem,2.2vw,1.18rem); color: var(--text-muted); max-width: 680px; margin: 0 0 34px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px; padding: 12px 22px; border-radius: 12px;
+    font-weight: 600; font-size: 15px; cursor: pointer; border: 1px solid transparent; transition: all .2s ease;
+  }
+  .btn-primary { color: var(--bg); background: linear-gradient(120deg, var(--accent), var(--accent-2)); box-shadow: 0 10px 30px -10px var(--accent); }
+  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.07); color: var(--bg); }
+  .btn-ghost { color: var(--text); background: var(--bg-card); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+
+  /* stat row */
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 54px; }
+  .stat { background: linear-gradient(180deg, var(--bg-card), var(--bg-soft)); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; text-align: left; position: relative; overflow: hidden; }
+  .stat::after { content:""; position:absolute; inset:0; background: radial-gradient(120px 60px at 20% 0%, rgba(97,218,251,.08), transparent); }
+  .stat .num { font-family: 'Sora'; font-size: clamp(1.7rem,4vw,2.3rem); font-weight: 800; background: linear-gradient(120deg,var(--accent),var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat .label { color: var(--text-muted); font-size: 13.5px; margin-top: 4px; }
+  @media (max-width:760px){ .stats{ grid-template-columns: repeat(2,1fr);} }
+
+  /* ---------- Sections ---------- */
+  section { padding: 70px 0; position: relative; }
+  .sec-head { margin-bottom: 40px; }
+  .sec-tag { font-family: 'JetBrains Mono'; font-size: 13px; color: var(--accent); letter-spacing: .05em; }
+  .sec-head h2 { font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 700; margin: 8px 0 0; }
+  .sec-head p { color: var(--text-muted); margin: 10px 0 0; max-width: 620px; }
+
+  /* skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 18px; }
+  .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: transform .25s ease, border-color .25s ease; position: relative; overflow: hidden; }
+  .skill-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .skill-card .ico { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; font-size: 20px; margin-bottom: 14px; background: rgba(97,218,251,.1); border: 1px solid rgba(97,218,251,.2); }
+  .skill-card h3 { font-size: 1.1rem; margin: 0 0 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--text-muted); background: var(--bg-card-2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 7px; transition: all .18s; }
+  .skill-card:hover .tag { border-color: var(--border); }
+  .tag:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before { content:""; position:absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--accent-2), transparent); }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item .node { position: absolute; left: -34px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(97,218,251,.12); }
+  .tl-item h3 { font-size: 1.2rem; margin: 0; }
+  .tl-item .meta { font-family: 'JetBrains Mono'; font-size: 12.5px; color: var(--accent-2); margin: 4px 0 10px; }
+  .tl-item .tagline { font-family: 'Sora'; font-weight: 600; font-size: 1.02rem; line-height: 1.35; margin: 0 0 12px; background: linear-gradient(110deg, var(--accent), var(--accent-2) 60%, var(--accent-3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  @media print { .tl-item .tagline { -webkit-text-fill-color: #0b1220 !important; color: #0b1220; background: none; } }
+  .tl-item p { color: var(--text-muted); margin: 0 0 10px; }
+  .tl-item ul { margin: 8px 0 0; padding-left: 18px; color: var(--text-muted); }
+  .tl-item li { margin-bottom: 5px; }
+
+  /* projects */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 20px; }
+  .proj {
+    background: linear-gradient(180deg, var(--bg-card), var(--bg-soft));
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 26px;
+    position: relative; overflow: hidden; transition: transform .28s ease, border-color .28s ease;
+  }
+  .proj::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3)); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+  .proj:hover { transform: translateY(-5px); border-color: var(--border); }
+  .proj:hover::before { transform: scaleX(1); }
+  .proj .emoji { font-size: 26px; }
+  .proj h3 { font-size: 1.25rem; margin: 12px 0 8px; }
+  .proj p { color: var(--text-muted); font-size: 14.5px; margin: 0 0 16px; }
+  .proj ul { margin: 0 0 16px; padding-left: 18px; color: var(--text-muted); font-size: 14px; }
+  .proj ul li { margin-bottom: 4px; }
+  .proj .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* contact */
+  .contact-wrap { background: linear-gradient(135deg, var(--bg-card), var(--bg-soft)); border: 1px solid var(--border); border-radius: 24px; padding: 54px 40px; text-align: center; position: relative; overflow: hidden; }
+  .contact-wrap::before { content:""; position:absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(97,218,251,.12), transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+  .contact-wrap h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin: 0 0 14px; }
+  .contact-wrap p { color: var(--text-muted); max-width: 500px; margin: 0 auto 28px; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-dim); font-size: 13.5px; border-top: 1px solid var(--border-soft); }
+  footer .heart { color: var(--accent-4); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* scroll progress */
+  .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 60; background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3)); box-shadow: 0 0 10px var(--accent); }
+
+  /* back to top */
+  .totop { position: fixed; right: 24px; bottom: 24px; z-index: 55; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); cursor: pointer; opacity: 0; transform: translateY(12px); transition: all .3s; }
+  .totop.show { opacity: 1; transform: none; }
+  .totop:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce){
+    .aurora::before,.aurora::after,.aurora .blob3,.brand .dot,.pill .live{ animation: none; }
+    .reveal{ opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- Print / PDF ---------- */
+  @media print {
+    .aurora,.grain,nav,.progress,.totop,.hero-actions,.nav-cta { display: none !important; }
+    body { background: #fff; color: #111; }
+    .container { max-width: 100%; }
+    section, header.hero { padding: 18px 0; page-break-inside: avoid; }
+    h1,h2,h3 { -webkit-text-fill-color: #0b1220 !important; color: #0b1220; background: none; }
+    .hero h1 { -webkit-text-fill-color:#0b1220 !important; }
+    .stat,.skill-card,.proj,.contact-wrap,.tag { background: #fff !important; border-color: #ddd !important; box-shadow: none !important; }
+    .stat .num { -webkit-text-fill-color:#0b1220 !important; color:#0b1220; }
+    a { color: #0b1220; }
+    .text-muted,.hero p.lede,.proj p,.tl-item p,.sec-head p { color: #333 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="aurora"><div class="blob3"></div></div>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#top"><span class="dot"></span>Hayk Karapetyan</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <span class="pill reveal"><span class="live"></span> React &amp; React Native Developer @ Jotform</span>
+    <h1 class="reveal">Hayk Karapetyan</h1>
+    <div class="role reveal"><span class="tw" id="typewriter"></span><span class="cursor">▋</span></div>
+    <p class="lede reveal">React &amp; React Native developer with <strong style="color:var(--text)">11 years</strong> shipping production JavaScript &amp; TypeScript — <strong style="color:var(--text)">9 of them at Jotform</strong>, building form-builder widgets, dynamic UI engines and cross-platform mobile apps.</p>
+    <div class="hero-actions reveal">
+      <a class="btn btn-primary" href="#contact">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Let's work together
+      </a>
+      <a class="btn btn-ghost" href="LINKEDIN_URL" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="11">0</div><div class="label">Years of experience</div></div>
+      <div class="stat reveal"><div class="num" data-count="9">0</div><div class="label">Years at Jotform</div></div>
+      <div class="stat reveal"><div class="num" data-count="2">0</div><div class="label">Core: React &amp; React Native</div></div>
+      <div class="stat reveal"><div class="num" data-count="99" data-suffix="%">0</div><div class="label">Ship-quality mindset</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// 01 — about</span>
+      <h2>React &amp; React Native, done right</h2>
+      <p>I've spent over a decade building UI that ships to millions — polished React interfaces on the web and native-feeling React Native apps on mobile. Type-safe, performant, and battle-tested at scale.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>React (Web)</h3>
+        <p style="color:var(--text-muted);font-size:14.5px;margin:0">Component architecture, hooks, state management and performance — complex, dynamic UIs and widget systems that stay fast as they grow.</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>React Native (Mobile)</h3>
+        <p style="color:var(--text-muted);font-size:14.5px;margin:0">Cross-platform iOS &amp; Android apps with Expo, native modules, navigation and smooth 60fps UI from a single codebase.</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>UI Engineering</h3>
+        <p style="color:var(--text-muted);font-size:14.5px;margin:0">Reusable component libraries, dynamic form logic, and accessible, pixel-tight interfaces built to handle real-world edge cases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// 02 — toolbox</span>
+      <h2>Tech stack</h2>
+      <p>The JavaScript &amp; TypeScript tools I reach for, grouped by where they live in the stack.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>React (Web)</h3>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Redux / Zustand</span><span class="tag">React Query</span><span class="tag">Hooks</span><span class="tag">SPAs / SSR</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>React Native (Mobile)</h3>
+        <div class="tags">
+          <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">React Navigation</span><span class="tag">Reanimated</span><span class="tag">Native Modules</span><span class="tag">Push Notifications</span><span class="tag">App Store / Play</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>UI &amp; Styling</h3>
+        <div class="tags">
+          <span class="tag">Tailwind CSS</span><span class="tag">CSS-in-JS</span><span class="tag">Styled Components</span><span class="tag">Responsive UI</span><span class="tag">Accessibility</span><span class="tag">Animations</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Widgets &amp; Dynamic UI</h3>
+        <div class="tags">
+          <span class="tag">Widget Systems</span><span class="tag">Dynamic Forms</span><span class="tag">Component Libraries</span><span class="tag">Conditions &amp; Logic</span><span class="tag">Embeds</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Quality &amp; Tooling</h3>
+        <div class="tags">
+          <span class="tag">Jest</span><span class="tag">React Testing Library</span><span class="tag">ESLint</span><span class="tag">Prettier</span><span class="tag">Storybook</span><span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>APIs &amp; Ship</h3>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">Vite / Webpack</span><span class="tag">GitHub Actions</span><span class="tag">EAS Build</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// 03 — journey</span>
+      <h2>Experience</h2>
+      <p>Eleven years of shipping React &amp; React Native — a snapshot of the work and the impact.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="node"></div>
+        <h3>React &amp; React Native Developer — <a href="https://jotform.com" target="_blank" rel="noopener">Jotform</a></h3>
+        <div class="meta">2017 — Present · 9 years · Form Builder Ecosystem</div>
+        <div class="tagline">Building widgets, dynamic UI and mobile apps for one of the world's leading form platforms.</div>
+        <p>Nine years as a React engineer at Jotform, shipping product used by millions — from the web form builder to the React Native mobile apps.</p>
+        <ul>
+          <li>Built custom widgets and reusable React / TypeScript component libraries</li>
+          <li>Developed dynamic form logic — conditions, actions and calculations</li>
+          <li>Contributed to React Native mobile apps across iOS &amp; Android</li>
+          <li>Improved performance for complex, large forms and public submissions</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="node"></div>
+        <h3>Frontend Developer — Beeweb</h3>
+        <div class="meta">2015 — 2017 · 2 years · Web &amp; Product Development</div>
+        <p>Two years building web products and interfaces — where I sharpened my JavaScript and React fundamentals before Jotform.</p>
+        <ul>
+          <li>Developed responsive, interactive UIs for client and product work</li>
+          <li>Built reusable frontend components and page templates</li>
+          <li>Collaborated across design and backend to ship features end to end</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-tag">// 04 — selected work</span>
+      <h2>Highlighted projects</h2>
+      <p>A few builds that show the range — across React on the web and React Native on mobile.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <h3>Jotform — Form Builder Widgets</h3>
+        <p>Custom widgets and reusable UI components for a leading online form platform used by millions.</p>
+        <ul>
+          <li>Interactive widgets built in React &amp; TypeScript</li>
+          <li>Embedding options, submission handling &amp; real-time updates</li>
+          <li>Hardened validation for scalable public forms</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">UI Components</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <h3>Dynamic Form Logic Engine</h3>
+        <p>The conditions, actions and calculations that make Jotform forms feel alive.</p>
+        <ul>
+          <li>Rule engine for conditional show/hide &amp; branching</li>
+          <li>Live calculations across large, complex forms</li>
+          <li>Performance-tuned for thousands of fields</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">State Management</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <h3>Jotform Mobile App</h3>
+        <p>Contributed to the React Native apps that bring form building and submissions to iOS &amp; Android.</p>
+        <ul>
+          <li>Cross-platform UI from a single codebase</li>
+          <li>Native navigation, gestures &amp; smooth animated screens</li>
+          <li>Offline support &amp; push notifications</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">React Navigation</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <h3>Reusable Component Library</h3>
+        <p>A shared design-system-driven component library powering consistent UI across products.</p>
+        <ul>
+          <li>Accessible, themeable components in React</li>
+          <li>Documented in Storybook for the whole team</li>
+          <li>Type-safe props &amp; tested with RTL</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Storybook</span><span class="tag">Tailwind</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <h3>Cross-Platform Mobile App</h3>
+        <p>A React Native (Expo) app shipped to the App Store and Google Play from one TypeScript codebase.</p>
+        <ul>
+          <li>Native navigation, gestures &amp; smooth animated UI</li>
+          <li>Push notifications, offline cache &amp; deep links</li>
+          <li>EAS build &amp; over-the-air updates</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span><span class="tag">Reanimated</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <h3>Next.js Web App</h3>
+        <p>A fast, SEO-friendly SSR app with clean, animated UI and a modern React stack.</p>
+        <ul>
+          <li>Server-side rendering &amp; static generation</li>
+          <li>Reusable components &amp; responsive layouts</li>
+          <li>Great Lighthouse scores &amp; edge deploy</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <h2>Let's build something great</h2>
+      <p>Got a React web app or a React Native mobile app in mind? I'd love to hear about it.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:hayk@usta.am">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+          Email me
+        </a>
+        <a class="btn btn-ghost" href="LINKEDIN_URL" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Hayk Karapetyan · React · React Native Developer</p>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // typewriter
+  (function(){
+    var roles = ['React Developer','React Native Developer','Frontend Engineer','Mobile App Developer','UI Engineer','TypeScript Developer'];
+    var el = document.getElementById('typewriter');
+    var r = 0, c = 0, deleting = false;
+    function tick(){
+      var word = roles[r];
+      if(!deleting){
+        el.textContent = word.slice(0, ++c);
+        if(c === word.length){ deleting = true; return setTimeout(tick, 1600); }
+      } else {
+        el.textContent = word.slice(0, --c);
+        if(c === 0){ deleting = false; r = (r+1)%roles.length; }
+      }
+      setTimeout(tick, deleting ? 45 : 85);
+    }
+    tick();
+  })();
+
+  // scroll progress + back to top
+  var progress = document.getElementById('progress');
+  var totop = document.getElementById('totop');
+  function onScroll(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (scrolled*100) + '%';
+    totop.classList.toggle('show', h.scrollTop > 500);
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  totop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(function(el, i){
+    el.style.transitionDelay = (Math.min(i,6)*60) + 'ms';
+    io.observe(el);
+  });
+
+  // animated counters
+  var counted = false;
+  function animateCounts(){
+    if(counted) return; counted = true;
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target = +el.dataset.count, suffix = el.dataset.suffix || '', cur = 0;
+      var step = Math.max(1, Math.ceil(target/45));
+      var t = setInterval(function(){
+        cur += step; if(cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur + suffix;
+      }, 26);
+    });
+  }
+  var statObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) animateCounts(); });
+  }, {threshold: 0.4});
+  var stats = document.querySelector('.stats'); if(stats) statObserver.observe(stats);
+</script>
+</body>
+</html>
