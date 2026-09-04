@@ -121,6 +121,24 @@
   .gap { border: 1px dashed var(--border); border-radius: var(--radius); padding: 15px 20px; margin-bottom: 14px; color: var(--text-muted); font-size: 14px; background: rgba(255,255,255,.012); }
   .gap strong { color: var(--text); font-weight: 600; }
 
+  /* ---------- stays ---------- */
+  .stay { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
+  .stay.todo { border-style: dashed; background: rgba(255,255,255,.012); }
+  .stay-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 5px; }
+  .stay-top .city { font-family: 'Sora',sans-serif; font-size: 19px; font-weight: 700; }
+  .stay-top .when { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--accent-3); border: 1px solid var(--border); background: var(--bg-card-2); padding: 3px 10px; border-radius: 999px; }
+  .stay .name { color: var(--text); font-weight: 600; font-size: 15px; }
+  .stay .addr { color: var(--text-muted); font-size: 13.5px; margin-top: 5px; line-height: 1.55; }
+  .stay.todo .addr { color: var(--text-dim); font-style: italic; margin-top: 0; }
+  .stay-rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--border-soft); }
+  .stay-rows .k { color: var(--text-dim); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+  .stay-rows .v { font-weight: 600; font-size: 14.5px; margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .chips span { font-size: 12px; color: var(--text-muted); background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px; }
+  .stay .note { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--border-soft); font-size: 13.5px; color: var(--text-muted); }
+  .stay .note.warn { color: var(--warn); }
+  .stay .note strong { color: var(--text); font-weight: 600; }
+
   /* ---------- cards / todo ---------- */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 14px; }
   .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
@@ -167,7 +185,7 @@
   <div class="container">
     <span class="pill"><span class="live"></span>21–31 October 2026</span>
     <h1>Madrid <span class="sep">·</span> Lisbon <span class="sep">·</span> Porto</h1>
-    <p class="lede">Eleven days through Spain and Portugal for the five of us, with Milan as the layover at each end. Flights and the Madrid–Lisbon bus are booked; stays and the day-by-day plan are going in next.</p>
+    <p class="lede">Eleven days through Spain and Portugal for the five of us — three adults and two kids — with Milan as the layover at each end. Flights and the Madrid–Lisbon bus are booked; stays and the day-by-day plan are going in next.</p>
 
     <div class="route">
       <span class="stop">Yerevan</span><span class="arr">→</span>
@@ -183,7 +201,7 @@
       <div class="meta"><div class="k">Departs</div><div class="v">Wed 21 Oct, 22:35</div></div>
       <div class="meta"><div class="k">Home</div><div class="v">Sat 31 Oct, 12:10</div></div>
       <div class="meta"><div class="k">Duration</div><div class="v">11 days</div></div>
-      <div class="meta"><div class="k">Travellers</div><div class="v">5</div></div>
+      <div class="meta"><div class="k">Travellers</div><div class="v">3 adults + 2 kids</div></div>
       <div class="meta"><div class="k">Airline</div><div class="v">Wizz Air</div></div>
     </div>
   </div>
@@ -339,10 +357,47 @@
 <section id="stays">
   <div class="container">
     <div class="sec-head"><span class="num">02</span><h2>Stays</h2></div>
-    <div class="cards">
-      <div class="card"><span class="tag">22–25 Oct</span><h4>Madrid</h4><p>Three nights. Address and check-in details to be added.</p></div>
-      <div class="card"><span class="tag">25 Oct – ?</span><h4>Lisbon</h4><p>Arriving by coach at 16:00. Address and check-in details to be added.</p></div>
-      <div class="card"><span class="tag">? – 30 Oct</span><h4>Porto</h4><p>Last stop before the flight out at 19:55. Address and check-in details to be added.</p></div>
+    <div class="stay">
+      <div class="stay-top">
+        <span class="city">Madrid</span>
+        <span class="when">Thu 22 – Sun 25 Oct · 3 nights</span>
+      </div>
+      <div class="name">Moderno apartamento en Madrid climatizado — two-bedroom apartment</div>
+      <div class="addr">
+        C. del Camino Viejo de Leganés, 174 Bajo 10 Exterior, Carabanchel, 28025 Madrid<br />
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=40.378833,-3.733067">Open in Maps</a>
+        · <a href="tel:+34651971579">+34 651 97 15 79</a>
+      </div>
+      <div class="stay-rows">
+        <div><div class="k">Check in</div><div class="v">Thu 22, from 15:00</div></div>
+        <div><div class="k">Check out</div><div class="v">Sun 25, by 10:00</div></div>
+        <div><div class="k">Booked for</div><div class="v">3 adults, 2 children</div></div>
+        <div><div class="k">Free cancellation</div><div class="v">until 16 Oct</div></div>
+      </div>
+      <div class="chips">
+        <span>2 bedrooms</span><span>Private bathroom</span><span>Air conditioning</span>
+        <span>Kitchen</span><span>Washing machine</span><span>Free WiFi</span><span>Free parking nearby</span>
+      </div>
+      <div class="note warn">
+        Two tight edges. <strong>Arriving:</strong> the flight lands at Barajas around 08:55 but check-in is not until 15:00 — the property has been told 11:00–12:00, so worth asking about early check-in or leaving the bags.
+        <strong>Leaving:</strong> check-out is 10:00 and the Lisbon coach also leaves at 10:00, from Méndez Álvaro across the city — plan on being out by 08:45.
+      </div>
+    </div>
+
+    <div class="stay todo">
+      <div class="stay-top">
+        <span class="city">Lisbon</span>
+        <span class="when">from Sun 25 Oct</span>
+      </div>
+      <div class="addr">Not booked yet — the coach arrives at Oriente station 16:00.</div>
+    </div>
+
+    <div class="stay todo">
+      <div class="stay-top">
+        <span class="city">Porto</span>
+        <span class="when">until Fri 30 Oct</span>
+      </div>
+      <div class="addr">Not booked yet — flight out of Porto at 19:55.</div>
     </div>
   </div>
 </section>
@@ -362,6 +417,11 @@
         <span class="tag">Time</span>
         <h4>Three clocks</h4>
         <p>Yerevan runs 2h ahead of Madrid, and Portugal an hour behind Spain. Clocks go back across Europe on Sun 25 Oct — the same day as the Lisbon coach.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Emergency</span>
+        <h4>112 everywhere</h4>
+        <p>One number for police, fire and ambulance across Spain, Portugal and Italy, free from any phone. Madrid apartment: <a href="tel:+34651971579">+34 651 97 15 79</a>.</p>
       </div>
       <div class="card">
         <span class="tag">Money</span>
