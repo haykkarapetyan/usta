@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Trip Itinerary — usta.am</title>
-<meta name="description" content="Day-by-day trip itinerary: flights, stays, plans and packing list." />
+<title>Milan · Madrid · Porto — Oct 2026</title>
+<meta name="description" content="Trip itinerary: Yerevan → Milan → Madrid → Porto → Milan, 21–30 October 2026." />
 <meta name="theme-color" content="#07090d" />
-<meta name="robots" content="noindex" />
+<meta name="robots" content="noindex, nofollow" />
 
-<meta property="og:title" content="Trip Itinerary" />
-<meta property="og:description" content="Day-by-day plan: flights, stays, and what to bring." />
+<meta property="og:title" content="Milan · Madrid · Porto — Oct 2026" />
+<meta property="og:description" content="Yerevan → Milan → Madrid → Porto → Milan, 21–30 October 2026." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://usta.am/trip/" />
 <link rel="canonical" href="https://usta.am/trip/" />
@@ -33,10 +33,10 @@
     --accent-2: #60a5fa;
     --accent-3: #c084fc;
     --accent-4: #fb7185;
+    --warn: #fbbf24;
     --radius: 16px;
     --radius-sm: 10px;
     --maxw: 1040px;
-    --shadow: 0 20px 60px -20px rgba(0,0,0,.6);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -49,10 +49,10 @@
   h1,h2,h3,h4 { font-family: 'Sora','Inter',sans-serif; letter-spacing: -.02em; line-height: 1.15; margin: 0; }
   a { color: var(--accent); text-decoration: none; transition: color .18s ease; }
   a:hover { color: var(--accent-2); }
-  code,.mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
-  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-  /* nav */
+  /* ---------- nav ---------- */
   nav { position: sticky; top: 0; z-index: 50; background: rgba(7,9,13,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 16px; }
   .brand { font-family: 'Sora',sans-serif; font-weight: 700; color: var(--text); font-size: 15.5px; }
@@ -60,62 +60,85 @@
   .nav-links { display: flex; gap: 22px; align-items: center; }
   .nav-links a { color: var(--text-muted); font-size: 14.5px; font-weight: 500; }
   .nav-links a:hover { color: var(--text); }
+  .nav-cta { color: var(--bg) !important; background: linear-gradient(120deg, var(--accent), var(--accent-2)); padding: 7px 15px; border-radius: 999px; font-weight: 600; font-size: 13.5px; }
   @media (max-width: 760px){ .nav-links a:not(.nav-cta){ display: none; } }
 
-  /* hero */
-  header.hero { padding: 72px 0 40px; }
+  /* ---------- hero ---------- */
+  header.hero { padding: 72px 0 34px; }
   .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-card); color: var(--text-muted); font-size: 12.5px; font-weight: 500; }
   .pill .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-  h1 { font-size: clamp(34px, 6vw, 56px); font-weight: 800; margin: 18px 0 12px; }
-  .lede { color: var(--text-muted); font-size: 17px; max-width: 62ch; }
-  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-top: 30px; }
+  h1 { font-size: clamp(32px, 5.6vw, 54px); font-weight: 800; margin: 18px 0 10px; }
+  h1 .sep { color: var(--text-dim); font-weight: 400; }
+  .lede { color: var(--text-muted); font-size: 17px; max-width: 60ch; margin: 0; }
+
+  .route { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 26px 0 0; }
+  .route .stop { background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; font-size: 13.5px; font-weight: 600; }
+  .route .arr { color: var(--text-dim); font-size: 13px; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-top: 26px; }
   .meta { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
   .meta .k { color: var(--text-dim); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
-  .meta .v { font-weight: 600; margin-top: 4px; font-size: 15px; }
+  .meta .v { font-weight: 600; margin-top: 3px; font-size: 15px; }
 
-  /* sections */
-  section { padding: 44px 0; }
-  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; }
+  /* ---------- sections ---------- */
+  section { padding: 42px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
   .sec-head h2 { font-size: clamp(22px,3.4vw,30px); font-weight: 700; }
   .sec-head .num { color: var(--accent); font-size: 13px; font-weight: 600; }
 
-  /* timeline */
-  .day { position: relative; padding: 0 0 6px 34px; border-left: 1px solid var(--border); }
-  .day:last-child { border-left-color: transparent; }
-  .day::before { content:''; position: absolute; left: -6px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(97,218,251,.12); }
-  .day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 12px; }
-  .day-head .date { color: var(--text-dim); font-size: 13px; font-weight: 600; }
-  .day-head h3 { font-size: 19px; font-weight: 700; }
-  .items { display: grid; gap: 10px; margin-bottom: 26px; }
-  .item { display: grid; grid-template-columns: 68px 1fr; gap: 14px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius-sm); padding: 12px 14px; }
-  .item .time { color: var(--accent-2); font-size: 13px; font-weight: 600; }
-  .item .what { font-weight: 600; font-size: 15px; }
-  .item .note { color: var(--text-muted); font-size: 13.5px; margin-top: 2px; }
-  .item .note a { word-break: break-word; }
-  @media (max-width: 560px){ .item { grid-template-columns: 1fr; gap: 4px; } }
+  /* ---------- flights ---------- */
+  .flight { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
+  .flight-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .flight-top .date { font-weight: 700; font-size: 15px; }
+  .flight-top .no { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--accent-3); border: 1px solid var(--border); background: var(--bg-card-2); padding: 3px 10px; border-radius: 999px; }
+  .flight-top .no.tbc { color: var(--warn); }
+  .leg { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+  .leg .port { min-width: 0; }
+  .leg .port.to { text-align: right; }
+  .leg .time { font-family: 'Sora',sans-serif; font-size: clamp(22px,3.4vw,28px); font-weight: 700; letter-spacing: -.02em; }
+  .leg .city { color: var(--text-muted); font-size: 14px; font-weight: 500; margin-top: 1px; }
+  .leg .code { color: var(--text-dim); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .leg .mid { text-align: center; color: var(--text-dim); font-size: 11.5px; }
+  .leg .line { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 6px 0; position: relative; }
+  .leg .line::after { content: '✈'; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); font-size: 12px; color: var(--accent); background: var(--bg-card); padding: 0 6px; }
+  .leg .dur { white-space: nowrap; }
+  @media (max-width: 560px){
+    .leg { grid-template-columns: 1fr; gap: 6px; }
+    .leg .port.to { text-align: left; }
+    .leg .mid { text-align: left; }
+    .leg .line { display: none; }
+  }
+  .flight-note { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--border-soft); color: var(--text-muted); font-size: 13.5px; }
+  .flight-note.warn { color: var(--warn); }
 
-  /* cards */
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 14px; }
+  /* ---------- gap markers ---------- */
+  .gap { border: 1px dashed var(--border); border-radius: var(--radius); padding: 15px 20px; margin-bottom: 14px; color: var(--text-muted); font-size: 14px; background: rgba(255,255,255,.012); }
+  .gap strong { color: var(--text); font-weight: 600; }
+
+  /* ---------- cards / todo ---------- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 14px; }
   .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
   .card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
   .card p { color: var(--text-muted); font-size: 14px; margin: 0; }
-  .card .tag { display: inline-block; margin-bottom: 10px; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-3); }
+  .card .tag { display: inline-block; margin-bottom: 9px; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-3); }
+  .soon { color: var(--text-dim); font-size: 14.5px; font-style: italic; }
 
-  /* checklist */
-  .checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px 26px; list-style: none; padding: 0; margin: 0; }
-  .checklist li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); font-size: 14.5px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); }
+  /* ---------- packing ---------- */
+  .checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0 26px; list-style: none; padding: 0; margin: 0; }
+  .checklist li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); font-size: 14.5px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
   .checklist input { accent-color: var(--accent); margin-top: 4px; width: 15px; height: 15px; flex: none; }
   .checklist label { cursor: pointer; }
   .checklist input:checked + label { color: var(--text-dim); text-decoration: line-through; }
 
-  footer { padding: 36px 0 56px; text-align: center; color: var(--text-dim); font-size: 13.5px; border-top: 1px solid var(--border-soft); }
+  footer { padding: 34px 0 56px; text-align: center; color: var(--text-dim); font-size: 13.5px; border-top: 1px solid var(--border-soft); }
 
   @media print {
     nav, .noprint { display: none !important; }
     body { background: #fff; color: #000; }
-    .item, .card, .meta { border-color: #ccc; background: #fff; }
-    .lede, .card p, .checklist li, .item .note { color: #333; }
-    section, header.hero { padding: 14px 0; page-break-inside: avoid; }
+    .flight, .card, .meta, .gap, .route .stop { border-color: #bbb; background: #fff; }
+    .lede, .card p, .checklist li, .flight-note, .gap { color: #333; }
+    .leg .line::after { background: #fff; }
+    section, header.hero { padding: 12px 0; page-break-inside: avoid; }
   }
 </style>
 </head>
@@ -125,8 +148,9 @@
   <div class="container nav-inner">
     <a class="brand" href="/">usta<span class="dot">.</span>am</a>
     <div class="nav-links">
-      <a href="#itinerary">Itinerary</a>
-      <a href="#logistics">Logistics</a>
+      <a href="#flights">Flights</a>
+      <a href="#stays">Stays</a>
+      <a href="#plan">Plan</a>
       <a href="#packing">Packing</a>
       <a href="#" onclick="window.print();return false" class="nav-cta">Print</a>
     </div>
@@ -135,165 +159,200 @@
 
 <header class="hero">
   <div class="container">
-    <span class="pill"><span class="live"></span><span id="p-status">Planning</span></span>
-    <h1 id="p-title">Trip Itinerary</h1>
-    <p class="lede" id="p-lede">Day-by-day plan, stays, and everything worth having in one link.</p>
-    <div class="meta-grid" id="p-meta"></div>
+    <span class="pill"><span class="live"></span>21–30 October 2026</span>
+    <h1>Milan <span class="sep">·</span> Madrid <span class="sep">·</span> Porto</h1>
+    <p class="lede">Ten days across Italy, Spain and Portugal. Flights are booked — stays and the day-by-day plan are going in next.</p>
+
+    <div class="route">
+      <span class="stop">Yerevan</span><span class="arr">→</span>
+      <span class="stop">Milan</span><span class="arr">→</span>
+      <span class="stop">Madrid</span><span class="arr">→</span>
+      <span class="stop">Porto</span><span class="arr">→</span>
+      <span class="stop">Milan</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta"><div class="k">Departs</div><div class="v">Wed 21 Oct, 22:35</div></div>
+      <div class="meta"><div class="k">Returns</div><div class="v">Fri 30 Oct, 19:55</div></div>
+      <div class="meta"><div class="k">Duration</div><div class="v">10 days</div></div>
+      <div class="meta"><div class="k">Airline</div><div class="v">Wizz Air</div></div>
+    </div>
   </div>
 </header>
 
-<section id="itinerary">
+<section id="flights">
   <div class="container">
-    <div class="sec-head"><span class="num">01</span><h2>Itinerary</h2></div>
-    <div id="p-days"></div>
+    <div class="sec-head"><span class="num">01</span><h2>Flights</h2></div>
+
+    <!-- Leg 1 -->
+    <div class="flight">
+      <div class="flight-top">
+        <span class="date">Wed 21 Oct 2026</span>
+        <span class="no mono">W4 6456</span>
+      </div>
+      <div class="leg">
+        <div class="port">
+          <div class="time mono">22:35</div>
+          <div class="city">Yerevan, Zvartnots</div>
+          <div class="code mono">EVN</div>
+        </div>
+        <div class="mid">
+          <div class="dur">4h 35m</div>
+          <div class="line"></div>
+          <div>A321neo</div>
+        </div>
+        <div class="port to">
+          <div class="time mono">01:10 <span style="font-size:.55em;color:var(--text-dim)">+1</span></div>
+          <div class="city">Milan Malpensa</div>
+          <div class="code mono">MXP · T1</div>
+        </div>
+      </div>
+      <div class="flight-note">Overnight flight, lands after midnight on Thu 22 Oct.</div>
+    </div>
+
+    <!-- Leg 2 -->
+    <div class="flight">
+      <div class="flight-top">
+        <span class="date">Thu 22 Oct 2026</span>
+        <span class="no mono">W4 6311</span>
+      </div>
+      <div class="leg">
+        <div class="port">
+          <div class="time mono">06:40</div>
+          <div class="city">Milan Malpensa</div>
+          <div class="code mono">MXP · T1</div>
+        </div>
+        <div class="mid">
+          <div class="dur">~2h 15m</div>
+          <div class="line"></div>
+          <div>approx.</div>
+        </div>
+        <div class="port to">
+          <div class="time mono">~08:55</div>
+          <div class="city">Madrid Barajas</div>
+          <div class="code mono">MAD</div>
+        </div>
+      </div>
+      <div class="flight-note warn">Only 5h 30m on the ground at Malpensa, overnight — likely a night in the terminal rather than a hotel. Bag drop for the Madrid flight opens roughly 04:40.</div>
+    </div>
+
+    <div class="gap">
+      <strong>Madrid → Porto not booked yet.</strong> Eight days between landing in Madrid (22 Oct) and flying out of Porto (30 Oct). Train, bus or a separate flight — to be decided.
+    </div>
+
+    <!-- Leg 3 -->
+    <div class="flight">
+      <div class="flight-top">
+        <span class="date">Fri 30 Oct 2026</span>
+        <span class="no mono tbc">flight no. TBC</span>
+      </div>
+      <div class="leg">
+        <div class="port">
+          <div class="time mono">19:55</div>
+          <div class="city">Porto</div>
+          <div class="code mono">OPO</div>
+        </div>
+        <div class="mid">
+          <div class="dur">~2h 35m</div>
+          <div class="line"></div>
+          <div>approx.</div>
+        </div>
+        <div class="port to">
+          <div class="time mono">~23:30</div>
+          <div class="city">Milan Malpensa</div>
+          <div class="code mono">MXP · T1</div>
+        </div>
+      </div>
+      <div class="flight-note">Porto is 1h behind Milan, so the clock jumps forward an hour in the air. Clocks also go back across Europe on Sun 25 Oct, mid-trip.</div>
+    </div>
+
+    <div class="gap">
+      <strong>Milan → Yerevan not booked yet.</strong> Nothing on file after landing back at Malpensa late on 30 Oct.
+    </div>
   </div>
 </section>
 
-<section id="logistics">
+<section id="stays">
   <div class="container">
-    <div class="sec-head"><span class="num">02</span><h2>Logistics</h2></div>
-    <div class="cards" id="p-logistics"></div>
+    <div class="sec-head"><span class="num">02</span><h2>Stays</h2></div>
+    <p class="soon">Accommodation for Madrid and Porto goes here — names, addresses, check-in and check-out.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="container">
+    <div class="sec-head"><span class="num">03</span><h2>Day by day</h2></div>
+    <p class="soon">The day-by-day plan goes here once the details land.</p>
+  </div>
+</section>
+
+<section id="notes">
+  <div class="container">
+    <div class="sec-head"><span class="num">04</span><h2>Good to know</h2></div>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Time</span>
+        <h4>Three clocks</h4>
+        <p>Yerevan is 2h ahead of Milan and Madrid; Porto is 1h behind them. European clocks go back on Sun 25 Oct, in the middle of the trip.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Money</span>
+        <h4>Euro throughout</h4>
+        <p>Italy, Spain and Portugal are all euro. Cards are accepted almost everywhere; small cash is handy for Porto.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Bags</span>
+        <h4>Wizz cabin rules</h4>
+        <p>Three separate Wizz bookings, so the baggage allowance is per booking — worth checking each one before check-in.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Airport</span>
+        <h4>Malpensa Terminal 1</h4>
+        <p>Wizz Air uses T1 for both the arrival and the Madrid departure, so no inter-terminal transfer during the overnight wait.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="packing">
   <div class="container">
-    <div class="sec-head"><span class="num">03</span><h2>Packing list</h2></div>
-    <ul class="checklist" id="p-packing"></ul>
+    <div class="sec-head"><span class="num">05</span><h2>Packing</h2></div>
+    <ul class="checklist">
+      <li><input type="checkbox" id="p1" /><label for="p1">Passport</label></li>
+      <li><input type="checkbox" id="p2" /><label for="p2">Schengen visa / residence card</label></li>
+      <li><input type="checkbox" id="p3" /><label for="p3">Boarding passes (all 3 bookings)</label></li>
+      <li><input type="checkbox" id="p4" /><label for="p4">Travel insurance</label></li>
+      <li><input type="checkbox" id="p5" /><label for="p5">Cards + some euro cash</label></li>
+      <li><input type="checkbox" id="p6" /><label for="p6">Phone charger + power bank</label></li>
+      <li><input type="checkbox" id="p7" /><label for="p7">Type C / F plug adapter</label></li>
+      <li><input type="checkbox" id="p8" /><label for="p8">Neck pillow + eye mask (MXP overnight)</label></li>
+      <li><input type="checkbox" id="p9" /><label for="p9">Light rain jacket</label></li>
+      <li><input type="checkbox" id="p10" /><label for="p10">Comfortable walking shoes</label></li>
+      <li><input type="checkbox" id="p11" /><label for="p11">Meds</label></li>
+      <li><input type="checkbox" id="p12" /><label for="p12">Laptop + charger</label></li>
+    </ul>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <span id="p-footer"></span>
+    Trip notes · <a href="/">usta.am</a>
   </div>
 </footer>
 
-<!-- ==========================================================
-     EDIT EVERYTHING BELOW. Nothing above needs to change.
-     ========================================================== -->
 <script>
-const TRIP = {
-  status: "Planning",
-  title: "Trip Itinerary",
-  lede: "Day-by-day plan, stays, and everything worth having in one link. Replace this text with your trip in one sentence.",
-
-  // Small facts shown as cards under the title.
-  meta: [
-    { k: "Destination", v: "TBD" },
-    { k: "Dates",       v: "TBD" },
-    { k: "Travellers",  v: "TBD" },
-    { k: "Base",        v: "TBD" }
-  ],
-
-  // The day-by-day plan. Add or remove days freely.
-  days: [
-    {
-      date: "Day 1",
-      title: "Arrival",
-      items: [
-        { time: "09:00", what: "Flight out",      note: "Airline / flight no. / terminal — add booking reference here." },
-        { time: "14:00", what: "Check in",        note: "Hotel name and address. <a href='https://maps.google.com'>Open in Maps</a>" },
-        { time: "19:00", what: "Dinner",          note: "Somewhere nearby, nothing booked." }
-      ]
-    },
-    {
-      date: "Day 2",
-      title: "First full day",
-      items: [
-        { time: "10:00", what: "Main sight",      note: "Tickets: booked / to buy on the door." },
-        { time: "15:00", what: "Free afternoon",  note: "Walk, coffee, whatever." }
-      ]
-    },
-    {
-      date: "Day 3",
-      title: "Departure",
-      items: [
-        { time: "11:00", what: "Check out",       note: "Leave bags at reception if the flight is late." },
-        { time: "16:00", what: "Flight home",     note: "Be at the airport 2h before." }
-      ]
-    }
-  ],
-
-  // Anything that isn't time-bound: stays, transport, money, contacts.
-  logistics: [
-    { tag: "Stay",      title: "Accommodation", body: "Name, address, check-in/out times, booking reference." },
-    { tag: "Transport", title: "Getting around", body: "Airport transfer, metro card, car rental, driving notes." },
-    { tag: "Money",     title: "Budget", body: "Currency, rough per-person cost, who paid what." },
-    { tag: "Contacts",  title: "Numbers to have", body: "Hotel phone, local emergency number, embassy if relevant." }
-  ],
-
-  // Ticks are remembered in the browser of whoever opens the page.
-  packing: [
-    "Passport / ID",
-    "Boarding passes",
-    "Travel insurance",
-    "Cards + some cash",
-    "Phone charger",
-    "Power adapter",
-    "Meds",
-    "Weather-appropriate layers"
-  ],
-
-  footer: "Made for the trip · <a href='/'>usta.am</a>"
-};
-</script>
-
-<script>
+// Remember packing ticks in whoever's browser opens the page.
 (function () {
-  const $ = (id) => document.getElementById(id);
-  const esc = (s) => String(s).replace(/[<>]/g, (c) => (c === "<" ? "&lt;" : "&gt;"));
-
-  $("p-status").textContent = TRIP.status;
-  $("p-title").textContent = TRIP.title;
-  $("p-lede").innerHTML = TRIP.lede;
-  document.title = TRIP.title + " — usta.am";
-
-  $("p-meta").innerHTML = TRIP.meta
-    .map((m) => `<div class="meta"><div class="k">${esc(m.k)}</div><div class="v">${m.v}</div></div>`)
-    .join("");
-
-  $("p-days").innerHTML = TRIP.days
-    .map(
-      (d) => `<div class="day">
-        <div class="day-head"><span class="date">${esc(d.date)}</span><h3>${esc(d.title)}</h3></div>
-        <div class="items">${d.items
-          .map(
-            (i) => `<div class="item">
-              <div class="time">${esc(i.time || "")}</div>
-              <div><div class="what">${esc(i.what)}</div>${i.note ? `<div class="note">${i.note}</div>` : ""}</div>
-            </div>`
-          )
-          .join("")}</div>
-      </div>`
-    )
-    .join("");
-
-  $("p-logistics").innerHTML = TRIP.logistics
-    .map(
-      (c) => `<div class="card"><span class="tag">${esc(c.tag)}</span><h4>${esc(c.title)}</h4><p>${c.body}</p></div>`
-    )
-    .join("");
-
-  // Packing list with per-browser persistence.
-  const KEY = "usta-trip-packing";
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
-
-  $("p-packing").innerHTML = TRIP.packing
-    .map((item, n) => {
-      const id = "pk" + n;
-      return `<li><input type="checkbox" id="${id}" data-item="${esc(item)}"${saved[item] ? " checked" : ""} /><label for="${id}">${esc(item)}</label></li>`;
-    })
-    .join("");
-
-  $("p-packing").addEventListener("change", (e) => {
-    if (e.target.type !== "checkbox") return;
-    saved[e.target.dataset.item] = e.target.checked;
-    try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (err) {}
+  var KEY = 'usta-trip-packing', saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  var boxes = document.querySelectorAll('.checklist input[type=checkbox]');
+  Array.prototype.forEach.call(boxes, function (box) {
+    if (saved[box.id]) box.checked = true;
+    box.addEventListener('change', function () {
+      saved[box.id] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    });
   });
-
-  $("p-footer").innerHTML = TRIP.footer;
 })();
 </script>
 </body>
