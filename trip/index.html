@@ -12,6 +12,11 @@
 <meta property="og:description" content="Yerevan → Milan → Madrid → Lisbon → Porto → Milan → Yerevan, 21–31 October 2026." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://usta.am/trip/" />
+<meta property="og:image" content="https://usta.am/trip/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Madrid, Lisbon and Porto — 21–31 October 2026" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://usta.am/trip/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -169,7 +174,9 @@
   .d-open.after { margin-top: 8px; }
 
   /* ---------- stays ---------- */
-  .stay { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
+  .stay { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; overflow: hidden; }
+  /* City artwork bleeds to the card edges. Original drawings, no external requests. */
+  .stay-art { display: block; width: calc(100% + 40px); height: auto; margin: -18px -20px 16px; border-bottom: 1px solid var(--border-soft); }
   .stay.todo { border-style: dashed; background: rgba(255,255,255,.012); }
   .stay-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 5px; }
   .stay-top .city { font-family: var(--display); font-size: 19px; font-weight: 700; }
@@ -203,7 +210,7 @@
   footer { padding: 34px 0 56px; text-align: center; color: var(--text-dim); font-size: 13.5px; border-top: 1px solid var(--border-soft); }
 
   @media print {
-    nav, .noprint { display: none !important; }
+    nav, .noprint, .stay-art { display: none !important; }
     body { background: #fff; color: #000; }
     .flight, .card, .meta, .gap, .route .stop, .stay { border-color: #bbb; background: #fff; }
     .lede, .card p, .checklist li, .flight-note, .gap, .stay .addr { color: #333; }
@@ -409,6 +416,42 @@
     <div class="sec-head"><span class="num">02</span><h2 data-hy="Կացարաններ">Stays</h2></div>
 
     <div class="stay">
+      <svg class="stay-art" viewBox="0 0 800 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Madrid at night">
+        <defs>
+          <linearGradient id="m-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151f2c"/><stop offset="1" stop-color="#0d131b"/></linearGradient>
+          <radialGradient id="m-halo" cx=".5" cy="1" r=".62"><stop offset="0" stop-color="#61dafb" stop-opacity=".2"/><stop offset="1" stop-color="#61dafb" stop-opacity="0"/></radialGradient>
+          <pattern id="m-win" width="15" height="17" patternUnits="userSpaceOnUse"><rect x="5" y="5" width="5" height="8" fill="#61dafb" opacity=".34"/></pattern>
+        </defs>
+        <rect width="800" height="170" fill="url(#m-sky)"/>
+        <rect width="800" height="170" fill="url(#m-halo)"/>
+        <circle cx="672" cy="40" r="15" fill="#eaeef6" opacity=".11"/>
+        <path d="M0 142V116h58v-14h40v14h64v-22h44v22h74V98h34v44zM520 142V104h56V90h42v14h60v-18h38v18h84v38z" fill="#18232f"/>
+        <path d="M78 142V92h132v50z" fill="#212e3e"/>
+        <rect x="84" y="96" width="120" height="46" fill="url(#m-win)"/>
+        <path d="M72 92h144l-72-20z" fill="#2b3a4c"/>
+        <path d="M338 142V84h124v58z" fill="#263344"/>
+        <rect x="346" y="90" width="108" height="52" fill="url(#m-win)"/>
+        <g fill="#2a3849">
+          <rect x="350" y="90" width="8" height="52"/><rect x="374" y="90" width="8" height="52"/>
+          <rect x="398" y="90" width="8" height="52"/><rect x="422" y="90" width="8" height="52"/>
+          <rect x="446" y="90" width="8" height="52"/>
+        </g>
+        <ellipse cx="400" cy="84" rx="66" ry="6" fill="#243244"/>
+        <path d="M352 84a48 40 0 0 1 96 0z" fill="#2d3d52"/>
+        <path d="M366 84a34 28 0 0 1 68 0z" fill="#3a4f68"/>
+        <rect x="395" y="30" width="10" height="24" fill="#3a4f68"/>
+        <circle cx="400" cy="26" r="6" fill="#61dafb" opacity=".6"/>
+        <path d="M400 20l-13-11 13 4 13-4z" fill="#61dafb" opacity=".42"/>
+        <path d="M588 142V98h140v44z" fill="#212e3e"/>
+        <rect x="594" y="102" width="128" height="40" fill="url(#m-win)"/>
+        <path d="M582 98h152l-76-19z" fill="#2b3a4c"/>
+        <rect y="142" width="800" height="28" fill="#0d141c"/>
+        <rect y="142" width="800" height="1.5" fill="#61dafb" opacity=".14"/>
+        <g fill="#1d2937">
+          <rect x="240" y="130" width="5" height="12"/><ellipse cx="242" cy="126" rx="15" ry="12"/>
+          <rect x="552" y="130" width="5" height="12"/><ellipse cx="554" cy="126" rx="15" ry="12"/>
+        </g>
+      </svg>
       <div class="stay-top">
         <span class="city" data-hy="Մադրիդ">Madrid</span>
         <span class="when" data-hy="22 հոկ – 26 հոկ · 4 գիշեր">Thu 22 – Mon 26 Oct · 4 nights</span>
@@ -436,6 +479,52 @@
     </div>
 
     <div class="stay todo">
+      <svg class="stay-art" viewBox="0 0 800 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lisbon at night">
+        <defs>
+          <linearGradient id="l-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1d33"/><stop offset="1" stop-color="#0e1220"/></linearGradient>
+          <radialGradient id="l-halo" cx=".5" cy="1" r=".6"><stop offset="0" stop-color="#c084fc" stop-opacity=".13"/><stop offset="1" stop-color="#c084fc" stop-opacity="0"/></radialGradient>
+          <pattern id="l-win" width="16" height="17" patternUnits="userSpaceOnUse"><rect x="5" y="4" width="6" height="8" fill="#fbbf24" opacity=".3"/></pattern>
+        </defs>
+        <rect width="800" height="170" fill="url(#l-sky)"/>
+        <rect width="800" height="170" fill="url(#l-halo)"/>
+        <circle cx="128" cy="38" r="14" fill="#eaeef6" opacity=".1"/>
+        <path d="M0 142V88l38-16 40 14 36-12 40 16 34-10v62z" fill="#151b29"/>
+        <g fill="#1d2536">
+          <rect x="10" y="92" width="32" height="50"/><rect x="50" y="84" width="28" height="58"/>
+          <rect x="86" y="94" width="30" height="48"/><rect x="124" y="86" width="28" height="56"/>
+          <rect x="160" y="96" width="30" height="46"/>
+        </g>
+        <rect x="10" y="84" width="180" height="58" fill="url(#l-win)"/>
+        <rect x="306" y="66" width="188" height="76" fill="#232b3f"/>
+        <rect x="292" y="58" width="216" height="12" fill="#2c3549"/>
+        <path d="M354 142V106a46 46 0 0 1 92 0v36z" fill="#0e1220"/>
+        <g fill="#2c3549"><rect x="322" y="70" width="13" height="72"/><rect x="465" y="70" width="13" height="72"/></g>
+        <rect x="336" y="46" width="128" height="13" fill="#2c3549"/>
+        <g fill="#c084fc" opacity=".42">
+          <circle cx="368" cy="38" r="5"/><circle cx="400" cy="32" r="6"/><circle cx="432" cy="38" r="5"/>
+        </g>
+        <g fill="none" stroke="#fb7185">
+          <path d="M556 108h214" stroke-opacity=".4" stroke-width="3"/>
+          <path d="M600 108c44-40 82-40 126 0" stroke-opacity=".3" stroke-width="2"/>
+          <path d="M600 108V50M726 108V50" stroke-opacity=".38" stroke-width="3"/>
+        </g>
+        <g stroke="#fb7185" stroke-opacity=".16" stroke-width="1.2">
+          <path d="M622 108V90M646 108V80M670 108V78M694 108V82M714 108V94"/>
+        </g>
+        <g transform="translate(206 112)">
+          <rect width="80" height="26" rx="5" fill="#fbbf24" opacity=".82"/>
+          <g fill="#0e1220" opacity=".6">
+            <rect x="7" y="5" width="17" height="12" rx="2"/><rect x="31" y="5" width="17" height="12" rx="2"/>
+            <rect x="55" y="5" width="17" height="12" rx="2"/>
+          </g>
+          <circle cx="21" cy="29" r="4.5" fill="#0e1220"/><circle cx="60" cy="29" r="4.5" fill="#0e1220"/>
+          <path d="M40 0v-12" stroke="#fbbf24" stroke-opacity=".45" stroke-width="2"/>
+        </g>
+        <rect y="142" width="800" height="28" fill="#0a0f1c"/>
+        <g stroke="#c084fc" stroke-opacity=".15" stroke-width="2">
+          <path d="M40 152h110M210 162h140M420 150h120M600 160h140M130 168h160"/>
+        </g>
+      </svg>
       <div class="stay-top">
         <span class="city" data-hy="Լիսաբոն">Lisbon</span>
         <span class="when" data-hy="26 հոկտեմբերից">from Mon 26 Oct</span>
@@ -444,6 +533,47 @@
     </div>
 
     <div class="stay todo">
+      <svg class="stay-art" viewBox="0 0 800 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Porto at night">
+        <defs>
+          <linearGradient id="p-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141e2b"/><stop offset="1" stop-color="#0c1118"/></linearGradient>
+          <radialGradient id="p-halo" cx=".5" cy="1" r=".6"><stop offset="0" stop-color="#60a5fa" stop-opacity=".13"/><stop offset="1" stop-color="#60a5fa" stop-opacity="0"/></radialGradient>
+          <pattern id="p-win" width="15" height="16" patternUnits="userSpaceOnUse"><rect x="5" y="4" width="5" height="7" fill="#fbbf24" opacity=".28"/></pattern>
+        </defs>
+        <rect width="800" height="170" fill="url(#p-sky)"/>
+        <rect width="800" height="170" fill="url(#p-halo)"/>
+        <rect x="96" y="34" width="24" height="76" fill="#1c2634"/>
+        <path d="M96 34h24l-12-16z" fill="#263346"/>
+        <rect x="102" y="50" width="12" height="9" fill="#fbbf24" opacity=".32"/>
+        <path d="M0 142v-36l30-12 28 10 30-8 30 12 28-7 32 12v29z" fill="#151e29"/>
+        <g fill="#1e2937">
+          <rect x="8" y="108" width="28" height="34"/><rect x="44" y="102" width="24" height="40"/>
+          <rect x="76" y="110" width="26" height="32"/><rect x="110" y="104" width="24" height="38"/>
+          <rect x="142" y="112" width="28" height="30"/>
+        </g>
+        <rect x="8" y="102" width="164" height="40" fill="url(#p-win)"/>
+        <g fill="none" stroke="#60a5fa">
+          <path d="M300 142c56-92 144-92 200 0" stroke-opacity=".42" stroke-width="4"/>
+          <path d="M262 74h276" stroke-opacity=".5" stroke-width="4"/>
+          <path d="M300 138h200" stroke-opacity=".26" stroke-width="2.5"/>
+        </g>
+        <g stroke="#60a5fa" stroke-opacity=".18" stroke-width="1.3">
+          <path d="M330 74v26M360 74v13M400 74v8M440 74v13M470 74v26"/>
+        </g>
+        <rect x="256" y="62" width="12" height="80" fill="#1c2634"/>
+        <rect x="532" y="62" width="12" height="80" fill="#1c2634"/>
+        <path d="M580 142v-22h34v-12h30v12h40v-16h32v16h44v22z" fill="#141c26"/>
+        <rect x="586" y="108" width="170" height="34" fill="url(#p-win)" opacity=".5"/>
+        <g transform="translate(186 132)">
+          <path d="M0 6h84l-11 12H11z" fill="#213040"/>
+          <path d="M40 6v-26" stroke="#3a4f68" stroke-width="2"/>
+          <path d="M40-20l22 17H40z" fill="#60a5fa" opacity=".32"/>
+          <g fill="#3a4f68"><circle cx="24" cy="2" r="4"/><circle cx="40" cy="2" r="4"/><circle cx="56" cy="2" r="4"/></g>
+        </g>
+        <rect y="142" width="800" height="28" fill="#090f16"/>
+        <g stroke="#60a5fa" stroke-opacity=".14" stroke-width="2">
+          <path d="M30 152h120M200 162h110M540 150h140M600 166h130M110 168h140"/>
+        </g>
+      </svg>
       <div class="stay-top">
         <span class="city" data-hy="Պորտու">Porto</span>
         <span class="when" data-hy="մինչև 30 հոկտեմբերի">until Fri 30 Oct</span>
