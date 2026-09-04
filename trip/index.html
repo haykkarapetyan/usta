@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Milan · Madrid · Porto — Oct 2026</title>
-<meta name="description" content="Trip itinerary: Yerevan → Milan → Madrid → Porto → Milan → Yerevan, 21–31 October 2026." />
+<title>Madrid · Lisbon · Porto — Oct 2026</title>
+<meta name="description" content="Trip itinerary: Yerevan → Milan → Madrid → Lisbon → Porto → Milan → Yerevan, 21–31 October 2026." />
 <meta name="theme-color" content="#07090d" />
 <meta name="robots" content="noindex, nofollow" />
 
-<meta property="og:title" content="Milan · Madrid · Porto — Oct 2026" />
-<meta property="og:description" content="Yerevan → Milan → Madrid → Porto → Milan → Yerevan, 21–31 October 2026." />
+<meta property="og:title" content="Madrid · Lisbon · Porto — Oct 2026" />
+<meta property="og:description" content="Yerevan → Milan → Madrid → Lisbon → Porto → Milan → Yerevan, 21–31 October 2026." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://usta.am/trip/" />
 <link rel="canonical" href="https://usta.am/trip/" />
@@ -100,6 +100,12 @@
   .leg .code { color: var(--text-dim); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
   .leg .mid { text-align: center; color: var(--text-dim); font-size: 11.5px; }
   .leg .line { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 6px 0; position: relative; }
+  .flight.ground .flight-top .no { color: var(--accent-2); }
+  .flight.ground .leg .line::after { content: '🚌'; color: var(--accent-2); }
+  .leg .addr { color: var(--text-dim); font-size: 12.5px; line-height: 1.45; margin-top: 3px; }
+  .seats { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+  .seats .seat { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px; }
+  .seats .seat b { color: var(--text); font-weight: 600; }
   .leg .line::after { content: '✈'; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); font-size: 12px; color: var(--accent); background: var(--bg-card); padding: 0 6px; }
   .leg .dur { white-space: nowrap; }
   @media (max-width: 560px){
@@ -148,7 +154,7 @@
   <div class="container nav-inner">
     <a class="brand" href="/">usta<span class="dot">.</span>am</a>
     <div class="nav-links">
-      <a href="#flights">Flights</a>
+      <a href="#flights">Travel</a>
       <a href="#stays">Stays</a>
       <a href="#plan">Plan</a>
       <a href="#packing">Packing</a>
@@ -160,13 +166,14 @@
 <header class="hero">
   <div class="container">
     <span class="pill"><span class="live"></span>21–31 October 2026</span>
-    <h1>Milan <span class="sep">·</span> Madrid <span class="sep">·</span> Porto</h1>
-    <p class="lede">Eleven days across Italy, Spain and Portugal. All four Wizz flights are booked — stays and the day-by-day plan are going in next.</p>
+    <h1>Madrid <span class="sep">·</span> Lisbon <span class="sep">·</span> Porto</h1>
+    <p class="lede">Eleven days through Spain and Portugal for the five of us, with Milan as the layover at each end. Flights and the Madrid–Lisbon bus are booked; stays and the day-by-day plan are going in next.</p>
 
     <div class="route">
       <span class="stop">Yerevan</span><span class="arr">→</span>
       <span class="stop">Milan</span><span class="arr">→</span>
       <span class="stop">Madrid</span><span class="arr">→</span>
+      <span class="stop">Lisbon</span><span class="arr">→</span>
       <span class="stop">Porto</span><span class="arr">→</span>
       <span class="stop">Milan</span><span class="arr">→</span>
       <span class="stop">Yerevan</span>
@@ -176,6 +183,7 @@
       <div class="meta"><div class="k">Departs</div><div class="v">Wed 21 Oct, 22:35</div></div>
       <div class="meta"><div class="k">Home</div><div class="v">Sat 31 Oct, 12:10</div></div>
       <div class="meta"><div class="k">Duration</div><div class="v">11 days</div></div>
+      <div class="meta"><div class="k">Travellers</div><div class="v">5</div></div>
       <div class="meta"><div class="k">Airline</div><div class="v">Wizz Air</div></div>
     </div>
   </div>
@@ -183,7 +191,7 @@
 
 <section id="flights">
   <div class="container">
-    <div class="sec-head"><span class="num">01</span><h2>Flights</h2></div>
+    <div class="sec-head"><span class="num">01</span><h2>Getting around</h2></div>
 
     <!-- Leg 1 -->
     <div class="flight">
@@ -237,8 +245,41 @@
       <div class="flight-note warn">Only 5h 30m on the ground at Malpensa, overnight — likely a night in the terminal rather than a hotel. Bag drop for the Madrid flight opens roughly 04:40.</div>
     </div>
 
+    <!-- Madrid → Lisbon by coach -->
+    <div class="flight ground">
+      <div class="flight-top">
+        <span class="date">Sun 25 Oct 2026</span>
+        <span class="no mono">BlaBlaCar Bus 3186</span>
+      </div>
+      <div class="leg">
+        <div class="port">
+          <div class="time mono">10:00</div>
+          <div class="city">Madrid — South Station</div>
+          <div class="addr">Estación Sur, 83 Av. Méndez Álvaro</div>
+        </div>
+        <div class="mid">
+          <div class="dur">7h on the road</div>
+          <div class="line"></div>
+          <div>coach</div>
+        </div>
+        <div class="port to">
+          <div class="time mono">16:00</div>
+          <div class="city">Lisbon — Oriente</div>
+          <div class="addr">Estação Oriente, Av. Aquilino Ribeiro Machado<br />Platform 28c</div>
+        </div>
+      </div>
+      <div class="seats">
+        <span class="seat">Hayk <b>20A</b></span>
+        <span class="seat">Mariam <b>20B</b></span>
+        <span class="seat">Aghavni <b>20C</b></span>
+        <span class="seat">Tina <b>20D</b></span>
+        <span class="seat">Eliza <b>20E</b></span>
+      </div>
+      <div class="flight-note warn">Clocks go back overnight and Lisbon is another hour behind Madrid, so 10:00–16:00 is seven hours of travel, not six. Operated by Comuto Pro.</div>
+    </div>
+
     <div class="gap">
-      <strong>Madrid → Porto not booked yet.</strong> Eight days between landing in Madrid (22 Oct) and flying out of Porto (30 Oct). Train, bus or a separate flight — to be decided.
+      <strong>Lisbon → Porto not booked yet.</strong> Five days between arriving in Lisbon (25 Oct) and flying out of Porto (30 Oct). Alfa Pendular trains do it in about 3h — worth booking early.
     </div>
 
     <!-- Leg 3 -->
@@ -264,7 +305,7 @@
           <div class="code mono">MXP · T1</div>
         </div>
       </div>
-      <div class="flight-note">Porto is 1h behind Milan, so the clock jumps forward an hour in the air — lands late, and the flight home is the same night.</div>
+      <div class="flight-note">Porto is 2h behind Milan by this point, so the clock jumps forward in the air — lands late, and the flight home is the same night.</div>
     </div>
 
     <!-- Leg 4 -->
@@ -298,7 +339,11 @@
 <section id="stays">
   <div class="container">
     <div class="sec-head"><span class="num">02</span><h2>Stays</h2></div>
-    <p class="soon">Accommodation for Madrid and Porto goes here — names, addresses, check-in and check-out.</p>
+    <div class="cards">
+      <div class="card"><span class="tag">22–25 Oct</span><h4>Madrid</h4><p>Three nights. Address and check-in details to be added.</p></div>
+      <div class="card"><span class="tag">25 Oct – ?</span><h4>Lisbon</h4><p>Arriving by coach at 16:00. Address and check-in details to be added.</p></div>
+      <div class="card"><span class="tag">? – 30 Oct</span><h4>Porto</h4><p>Last stop before the flight out at 19:55. Address and check-in details to be added.</p></div>
+    </div>
   </div>
 </section>
 
@@ -316,7 +361,7 @@
       <div class="card">
         <span class="tag">Time</span>
         <h4>Three clocks</h4>
-        <p>Yerevan is 2h ahead of Milan and Madrid; Porto is 1h behind them. European clocks go back on Sun 25 Oct, in the middle of the trip.</p>
+        <p>Yerevan runs 2h ahead of Madrid, and Portugal an hour behind Spain. Clocks go back across Europe on Sun 25 Oct — the same day as the Lisbon coach.</p>
       </div>
       <div class="card">
         <span class="tag">Money</span>
@@ -326,7 +371,7 @@
       <div class="card">
         <span class="tag">Bags</span>
         <h4>Wizz cabin rules</h4>
-        <p>Three Wizz bookings covering four flights, so the baggage allowance is per booking — worth checking each one before check-in.</p>
+        <p>Three Wizz bookings covering four flights, for five people — the allowance is per booking, so worth checking each one before check-in.</p>
       </div>
       <div class="card">
         <span class="tag">Airport</span>
