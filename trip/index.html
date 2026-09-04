@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-hy="Մադրիդ · Լիսաբոն · Պորտու — հոկտեմբեր 2026">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -16,7 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600;700&family=Noto+Sans+Armenian:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   :root {
@@ -37,16 +37,24 @@
     --radius: 16px;
     --radius-sm: 10px;
     --maxw: 1040px;
+    /* Armenian glyphs fall through to Noto; Latin stays on Inter/Sora. */
+    --sans: 'Inter', 'Noto Sans Armenian', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --display: 'Sora', 'Noto Sans Armenian', 'Inter', sans-serif;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--sans);
     background: var(--bg); color: var(--text); line-height: 1.65;
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
-  h1,h2,h3,h4 { font-family: 'Sora','Inter',sans-serif; letter-spacing: -.02em; line-height: 1.15; margin: 0; }
+  h1,h2,h3,h4 { font-family: var(--display); letter-spacing: -.02em; line-height: 1.15; margin: 0; }
+  html[lang="hy"] h1, html[lang="hy"] h2 { letter-spacing: -.01em; }
+  /* All-caps is not an Armenian convention — drop it for the small labels. */
+  html[lang="hy"] .meta .k,
+  html[lang="hy"] .stay-rows .k,
+  html[lang="hy"] .card .tag { text-transform: none; letter-spacing: .02em; }
   a { color: var(--accent); text-decoration: none; transition: color .18s ease; }
   a:hover { color: var(--accent-2); }
   .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
@@ -54,8 +62,8 @@
 
   /* ---------- nav ---------- */
   nav { position: sticky; top: 0; z-index: 50; background: rgba(7,9,13,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 16px; }
-  .brand { font-family: 'Sora',sans-serif; font-weight: 700; color: var(--text); font-size: 15.5px; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 14px; }
+  .brand { font-family: var(--display); font-weight: 700; color: var(--text); font-size: 15.5px; }
   .brand .dot { color: var(--accent); }
   .nav-links { display: flex; gap: 22px; align-items: center; }
   .nav-links a { color: var(--text-muted); font-size: 14.5px; font-weight: 500; }
@@ -63,10 +71,20 @@
   .nav-cta { color: var(--bg) !important; background: linear-gradient(120deg, var(--accent), var(--accent-2)); padding: 7px 15px; border-radius: 999px; font-weight: 600; font-size: 13.5px; }
   @media (max-width: 760px){ .nav-links a:not(.nav-cta){ display: none; } }
 
+  /* ---------- language switch ---------- */
+  .lang { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--border); background: var(--bg-card); border-radius: 999px; flex: none; }
+  .lang button {
+    font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .03em;
+    color: var(--text-muted); background: none; border: 0; padding: 5px 11px;
+    border-radius: 999px; cursor: pointer; transition: color .16s ease, background .16s ease;
+  }
+  .lang button:hover { color: var(--text); }
+  .lang button.on { color: var(--bg); background: linear-gradient(120deg, var(--accent), var(--accent-2)); }
+
   /* ---------- hero ---------- */
   header.hero { padding: 72px 0 34px; }
   .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-card); color: var(--text-muted); font-size: 12.5px; font-weight: 500; }
-  .pill .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .pill .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); flex: none; }
   h1 { font-size: clamp(32px, 5.6vw, 54px); font-weight: 800; margin: 18px 0 10px; }
   h1 .sep { color: var(--text-dim); font-weight: 400; }
   .lede { color: var(--text-muted); font-size: 17px; max-width: 60ch; margin: 0; }
@@ -95,19 +113,19 @@
   .leg { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
   .leg .port { min-width: 0; }
   .leg .port.to { text-align: right; }
-  .leg .time { font-family: 'Sora',sans-serif; font-size: clamp(22px,3.4vw,28px); font-weight: 700; letter-spacing: -.02em; }
+  .leg .time { font-family: var(--display); font-size: clamp(22px,3.4vw,28px); font-weight: 700; letter-spacing: -.02em; }
   .leg .city { color: var(--text-muted); font-size: 14px; font-weight: 500; margin-top: 1px; }
   .leg .code { color: var(--text-dim); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
   .leg .mid { text-align: center; color: var(--text-dim); font-size: 11.5px; }
   .leg .line { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 6px 0; position: relative; }
+  .leg .line::after { content: '✈'; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); font-size: 12px; color: var(--accent); background: var(--bg-card); padding: 0 6px; }
   .flight.ground .flight-top .no { color: var(--accent-2); }
   .flight.ground .leg .line::after { content: '🚌'; color: var(--accent-2); }
   .leg .addr { color: var(--text-dim); font-size: 12.5px; line-height: 1.45; margin-top: 3px; }
-  .seats { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
-  .seats .seat { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px; }
-  .seats .seat b { color: var(--text); font-weight: 600; }
-  .leg .line::after { content: '✈'; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); font-size: 12px; color: var(--accent); background: var(--bg-card); padding: 0 6px; }
   .leg .dur { white-space: nowrap; }
+  .seats { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+  .seats .seat { font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px; }
+  .seats .seat b { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; color: var(--text); font-weight: 600; }
   @media (max-width: 560px){
     .leg { grid-template-columns: 1fr; gap: 6px; }
     .leg .port.to { text-align: left; }
@@ -132,7 +150,7 @@
   .day::before { content: ''; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--text-dim); }
   .day.moves::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(97,218,251,.12); }
   .day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 9px; margin-bottom: 11px; }
-  .day-head .dow { font-family: 'Sora',sans-serif; font-size: 17px; font-weight: 700; }
+  .day-head .dow { font-family: var(--display); font-size: 17px; font-weight: 700; }
   .day-head .dnum { color: var(--text-dim); font-size: 13px; font-weight: 600; }
   .day-head .where { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border); background: var(--bg-card); padding: 2px 10px; border-radius: 999px; }
   .day.moves .day-head .where { color: var(--accent); }
@@ -140,7 +158,7 @@
   .d-items { display: grid; gap: 8px; }
   .d-item { display: grid; grid-template-columns: 62px 1fr; gap: 13px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius-sm); padding: 11px 14px; }
   .d-item .t { color: var(--accent-2); font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 600; padding-top: 1px; }
-  .d-item .t.soft { color: var(--text-dim); }
+  .d-item .t.soft { color: var(--text-dim); font-family: var(--sans); }
   .d-item .w { font-weight: 600; font-size: 14.5px; }
   .d-item .s { color: var(--text-muted); font-size: 13px; margin-top: 1px; }
   .d-item.alert { border-color: rgba(251,191,36,.32); }
@@ -148,12 +166,13 @@
   @media (max-width: 560px){ .d-item { grid-template-columns: 1fr; gap: 3px; } }
 
   .d-open { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 11px 14px; color: var(--text-dim); font-size: 13.5px; font-style: italic; background: rgba(255,255,255,.01); }
+  .d-open.after { margin-top: 8px; }
 
   /* ---------- stays ---------- */
   .stay { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
   .stay.todo { border-style: dashed; background: rgba(255,255,255,.012); }
   .stay-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 5px; }
-  .stay-top .city { font-family: 'Sora',sans-serif; font-size: 19px; font-weight: 700; }
+  .stay-top .city { font-family: var(--display); font-size: 19px; font-weight: 700; }
   .stay-top .when { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--accent-3); border: 1px solid var(--border); background: var(--bg-card-2); padding: 3px 10px; border-radius: 999px; }
   .stay .name { color: var(--text); font-weight: 600; font-size: 15px; }
   .stay .addr { color: var(--text-muted); font-size: 13.5px; margin-top: 5px; line-height: 1.55; }
@@ -167,13 +186,12 @@
   .stay .note.warn { color: var(--warn); }
   .stay .note strong { color: var(--text); font-weight: 600; }
 
-  /* ---------- cards / todo ---------- */
+  /* ---------- cards ---------- */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 14px; }
   .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
   .card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
   .card p { color: var(--text-muted); font-size: 14px; margin: 0; }
   .card .tag { display: inline-block; margin-bottom: 9px; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-3); }
-  .soon { color: var(--text-dim); font-size: 14.5px; font-style: italic; }
 
   /* ---------- packing ---------- */
   .checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 0 26px; list-style: none; padding: 0; margin: 0; }
@@ -187,8 +205,8 @@
   @media print {
     nav, .noprint { display: none !important; }
     body { background: #fff; color: #000; }
-    .flight, .card, .meta, .gap, .route .stop { border-color: #bbb; background: #fff; }
-    .lede, .card p, .checklist li, .flight-note, .gap { color: #333; }
+    .flight, .card, .meta, .gap, .route .stop, .stay { border-color: #bbb; background: #fff; }
+    .lede, .card p, .checklist li, .flight-note, .gap, .stay .addr { color: #333; }
     .leg .line::after { background: #fff; }
     section, header.hero { padding: 12px 0; page-break-inside: avoid; }
   }
@@ -200,213 +218,218 @@
   <div class="container nav-inner">
     <a class="brand" href="/">usta<span class="dot">.</span>am</a>
     <div class="nav-links">
-      <a href="#flights">Travel</a>
-      <a href="#stays">Stays</a>
-      <a href="#plan">Plan</a>
-      <a href="#packing">Packing</a>
-      <a href="#" onclick="window.print();return false" class="nav-cta">Print</a>
+      <a href="#flights" data-hy="Ճանապարհ">Travel</a>
+      <a href="#stays" data-hy="Կացարան">Stays</a>
+      <a href="#plan" data-hy="Օրերը">Plan</a>
+      <a href="#packing" data-hy="Ճամպրուկ">Packing</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="hy">ՀԱՅ</button>
+      </div>
+      <a href="#" onclick="window.print();return false" class="nav-cta" data-hy="Տպել">Print</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="container">
-    <span class="pill"><span class="live"></span>21–31 October 2026</span>
-    <h1>Madrid <span class="sep">·</span> Lisbon <span class="sep">·</span> Porto</h1>
-    <p class="lede">Eleven days through Spain and Portugal for the five of us — three adults and two kids — with Milan as the layover at each end. Flights and the Madrid–Lisbon bus are booked; stays and the day-by-day plan are going in next.</p>
+    <span class="pill"><span class="live"></span><span data-hy="2026 թ. հոկտեմբերի 21–31">21–31 October 2026</span></span>
+    <h1 data-hy="Մադրիդ <span class=&quot;sep&quot;>·</span> Լիսաբոն <span class=&quot;sep&quot;>·</span> Պորտու">Madrid <span class="sep">·</span> Lisbon <span class="sep">·</span> Porto</h1>
+    <p class="lede" data-hy="Տասնմեկ օր Իսպանիայում և Պորտուգալիայում՝ հինգ հոգով՝ երեք մեծահասակ և երկու երեխա։ Միլանը երկու ծայրում փոխանցման կայան է։ Չվերթերն ու Մադրիդ–Լիսաբոն ավտոբուսը ամրագրված են, կացարաններն ու օրական պլանը՝ առջևում։">Eleven days through Spain and Portugal for the five of us — three adults and two kids — with Milan as the layover at each end. Flights and the Madrid–Lisbon bus are booked; stays and the day-by-day plan are going in next.</p>
 
     <div class="route">
-      <span class="stop">Yerevan</span><span class="arr">→</span>
-      <span class="stop">Milan</span><span class="arr">→</span>
-      <span class="stop">Madrid</span><span class="arr">→</span>
-      <span class="stop">Lisbon</span><span class="arr">→</span>
-      <span class="stop">Porto</span><span class="arr">→</span>
-      <span class="stop">Milan</span><span class="arr">→</span>
-      <span class="stop">Yerevan</span>
+      <span class="stop" data-hy="Երևան">Yerevan</span><span class="arr">→</span>
+      <span class="stop" data-hy="Միլան">Milan</span><span class="arr">→</span>
+      <span class="stop" data-hy="Մադրիդ">Madrid</span><span class="arr">→</span>
+      <span class="stop" data-hy="Լիսաբոն">Lisbon</span><span class="arr">→</span>
+      <span class="stop" data-hy="Պորտու">Porto</span><span class="arr">→</span>
+      <span class="stop" data-hy="Միլան">Milan</span><span class="arr">→</span>
+      <span class="stop" data-hy="Երևան">Yerevan</span>
     </div>
 
     <div class="meta-grid">
-      <div class="meta"><div class="k">Departs</div><div class="v">Wed 21 Oct, 22:35</div></div>
-      <div class="meta"><div class="k">Home</div><div class="v">Sat 31 Oct, 12:10</div></div>
-      <div class="meta"><div class="k">Duration</div><div class="v">11 days</div></div>
-      <div class="meta"><div class="k">Travellers</div><div class="v">3 adults + 2 kids</div></div>
-      <div class="meta"><div class="k">Airline</div><div class="v">Wizz Air</div></div>
+      <div class="meta"><div class="k" data-hy="Մեկնում">Departs</div><div class="v" data-hy="Չրք, 21 հոկ, 22:35">Wed 21 Oct, 22:35</div></div>
+      <div class="meta"><div class="k" data-hy="Վերադարձ">Home</div><div class="v" data-hy="Շբթ, 31 հոկ, 12:10">Sat 31 Oct, 12:10</div></div>
+      <div class="meta"><div class="k" data-hy="Տևողություն">Duration</div><div class="v" data-hy="11 օր">11 days</div></div>
+      <div class="meta"><div class="k" data-hy="Ուղևորներ">Travellers</div><div class="v" data-hy="3 մեծահասակ + 2 երեխա">3 adults + 2 kids</div></div>
+      <div class="meta"><div class="k" data-hy="Ավիաընկերություն">Airline</div><div class="v">Wizz Air</div></div>
     </div>
   </div>
 </header>
 
 <section id="flights">
   <div class="container">
-    <div class="sec-head"><span class="num">01</span><h2>Getting around</h2></div>
+    <div class="sec-head"><span class="num">01</span><h2 data-hy="Երթուղի">Getting around</h2></div>
 
     <!-- Leg 1 -->
     <div class="flight">
       <div class="flight-top">
-        <span class="date">Wed 21 Oct 2026</span>
+        <span class="date" data-hy="Չրք, 21 հոկտեմբերի 2026">Wed 21 Oct 2026</span>
         <span class="no mono">W4 6456</span>
       </div>
       <div class="leg">
         <div class="port">
           <div class="time mono">22:35</div>
-          <div class="city">Yerevan, Zvartnots</div>
+          <div class="city" data-hy="Երևան, Զվարթնոց">Yerevan, Zvartnots</div>
           <div class="code mono">EVN</div>
         </div>
         <div class="mid">
-          <div class="dur">4h 35m</div>
+          <div class="dur" data-hy="4ժ 35ր">4h 35m</div>
           <div class="line"></div>
           <div>A321neo</div>
         </div>
         <div class="port to">
           <div class="time mono">01:10 <span style="font-size:.55em;color:var(--text-dim)">+1</span></div>
-          <div class="city">Milan Malpensa</div>
+          <div class="city" data-hy="Միլան Մալպենսա">Milan Malpensa</div>
           <div class="code mono">MXP · T1</div>
         </div>
       </div>
-      <div class="flight-note">Overnight flight, lands after midnight on Thu 22 Oct.</div>
+      <div class="flight-note" data-hy="Գիշերային չվերթ. վայրէջքը կեսգիշերից հետո է՝ հինգշաբթի, 22 հոկտեմբերի։">Overnight flight, lands after midnight on Thu 22 Oct.</div>
     </div>
 
     <!-- Leg 2 -->
     <div class="flight">
       <div class="flight-top">
-        <span class="date">Thu 22 Oct 2026</span>
+        <span class="date" data-hy="Հնգշ, 22 հոկտեմբերի 2026">Thu 22 Oct 2026</span>
         <span class="no mono">W4 6311</span>
       </div>
       <div class="leg">
         <div class="port">
           <div class="time mono">06:40</div>
-          <div class="city">Milan Malpensa</div>
+          <div class="city" data-hy="Միլան Մալպենսա">Milan Malpensa</div>
           <div class="code mono">MXP · T1</div>
         </div>
         <div class="mid">
-          <div class="dur">~2h 15m</div>
+          <div class="dur" data-hy="~2ժ 15ր">~2h 15m</div>
           <div class="line"></div>
-          <div>approx.</div>
+          <div data-hy="մոտավոր">approx.</div>
         </div>
         <div class="port to">
           <div class="time mono">~08:55</div>
-          <div class="city">Madrid Barajas</div>
+          <div class="city" data-hy="Մադրիդ Բարախաս">Madrid Barajas</div>
           <div class="code mono">MAD</div>
         </div>
       </div>
-      <div class="flight-note warn">Only 5h 30m on the ground at Malpensa, overnight — likely a night in the terminal rather than a hotel. Bag drop for the Madrid flight opens roughly 04:40.</div>
+      <div class="flight-note warn" data-hy="Մալպենսայում ընդամենը 5ժ 30ր՝ գիշերով. հավանաբար գիշերը տերմինալում, ոչ հյուրանոցում։ Մադրիդի չվերթի ուղեբեռի ընդունումը բացվում է մոտ 04:40-ին։">Only 5h 30m on the ground at Malpensa, overnight — likely a night in the terminal rather than a hotel. Bag drop for the Madrid flight opens roughly 04:40.</div>
     </div>
 
     <!-- Madrid → Lisbon by coach -->
     <div class="flight ground">
       <div class="flight-top">
-        <span class="date">Sun 25 Oct 2026</span>
+        <span class="date" data-hy="Կիր, 25 հոկտեմբերի 2026">Sun 25 Oct 2026</span>
         <span class="no mono">BlaBlaCar Bus 3186</span>
       </div>
       <div class="leg">
         <div class="port">
           <div class="time mono">10:00</div>
-          <div class="city">Madrid — South Station</div>
+          <div class="city" data-hy="Մադրիդ — Հարավային կայան">Madrid — South Station</div>
           <div class="addr">Estación Sur, 83 Av. Méndez Álvaro</div>
         </div>
         <div class="mid">
-          <div class="dur">7h on the road</div>
+          <div class="dur" data-hy="7ժ ճանապարհին">7h on the road</div>
           <div class="line"></div>
-          <div>coach</div>
+          <div data-hy="ավտոբուս">coach</div>
         </div>
         <div class="port to">
           <div class="time mono">16:00</div>
-          <div class="city">Lisbon — Oriente</div>
-          <div class="addr">Estação Oriente, Av. Aquilino Ribeiro Machado<br />Platform 28c</div>
+          <div class="city" data-hy="Լիսաբոն — Օրիենտե">Lisbon — Oriente</div>
+          <div class="addr" data-hy="Estação Oriente, Av. Aquilino Ribeiro Machado<br />Հարթակ 28c">Estação Oriente, Av. Aquilino Ribeiro Machado<br />Platform 28c</div>
         </div>
       </div>
       <div class="seats">
-        <span class="seat">Hayk <b>20A</b></span>
-        <span class="seat">Mariam <b>20B</b></span>
-        <span class="seat">Aghavni <b>20C</b></span>
-        <span class="seat">Tina <b>20D</b></span>
-        <span class="seat">Eliza <b>20E</b></span>
+        <span class="seat" data-hy="Հայկ <b>20A</b>">Hayk <b>20A</b></span>
+        <span class="seat" data-hy="Մարիամ <b>20B</b>">Mariam <b>20B</b></span>
+        <span class="seat" data-hy="Աղավնի <b>20C</b>">Aghavni <b>20C</b></span>
+        <span class="seat" data-hy="Տինա <b>20D</b>">Tina <b>20D</b></span>
+        <span class="seat" data-hy="Էլիզա <b>20E</b>">Eliza <b>20E</b></span>
       </div>
-      <div class="flight-note warn">Clocks go back overnight and Lisbon is another hour behind Madrid, so 10:00–16:00 is seven hours of travel, not six. Operated by Comuto Pro.</div>
+      <div class="flight-note warn" data-hy="Գիշերը ժամացույցները հետ են տարվում, և Լիսաբոնը ևս մեկ ժամ հետ է Մադրիդից, ուստի 10:00–16:00-ը յոթ ժամ ճանապարհ է, ոչ վեց։ Իրականացնում է Comuto Pro-ն։">Clocks go back overnight and Lisbon is another hour behind Madrid, so 10:00–16:00 is seven hours of travel, not six. Operated by Comuto Pro.</div>
     </div>
 
-    <div class="gap">
+    <div class="gap" data-hy="<strong>Լիսաբոն → Պորտու դեռ ամրագրված չէ։</strong> Հինգ օր՝ Լիսաբոն հասնելու (25 հոկ) և Պորտուից թռչելու (30 հոկ) միջև։ Alfa Pendular գնացքները հասնում են մոտ 3 ժամում՝ արժե շուտ ամրագրել։">
       <strong>Lisbon → Porto not booked yet.</strong> Five days between arriving in Lisbon (25 Oct) and flying out of Porto (30 Oct). Alfa Pendular trains do it in about 3h — worth booking early.
     </div>
 
     <!-- Leg 3 -->
     <div class="flight">
       <div class="flight-top">
-        <span class="date">Fri 30 Oct 2026</span>
-        <span class="no mono tbc">flight no. TBC</span>
+        <span class="date" data-hy="Ուրբ, 30 հոկտեմբերի 2026">Fri 30 Oct 2026</span>
+        <span class="no mono tbc" data-hy="չվերթի համարը՝ պարզելու">flight no. TBC</span>
       </div>
       <div class="leg">
         <div class="port">
           <div class="time mono">19:55</div>
-          <div class="city">Porto</div>
+          <div class="city" data-hy="Պորտու">Porto</div>
           <div class="code mono">OPO</div>
         </div>
         <div class="mid">
-          <div class="dur">~2h 35m</div>
+          <div class="dur" data-hy="~2ժ 35ր">~2h 35m</div>
           <div class="line"></div>
-          <div>approx.</div>
+          <div data-hy="մոտավոր">approx.</div>
         </div>
         <div class="port to">
           <div class="time mono">~23:30</div>
-          <div class="city">Milan Malpensa</div>
+          <div class="city" data-hy="Միլան Մալպենսա">Milan Malpensa</div>
           <div class="code mono">MXP · T1</div>
         </div>
       </div>
-      <div class="flight-note">Porto is 2h behind Milan by this point, so the clock jumps forward in the air — lands late, and the flight home is the same night.</div>
+      <div class="flight-note" data-hy="Այս պահին Պորտուն 2ժ հետ է Միլանից, ուստի օդում ժամացույցը առաջ է թռչում. վայրէջքը ուշ է, իսկ տուն թռիչքը՝ նույն գիշերը։">Porto is 2h behind Milan by this point, so the clock jumps forward in the air — lands late, and the flight home is the same night.</div>
     </div>
 
     <!-- Leg 4 -->
     <div class="flight">
       <div class="flight-top">
-        <span class="date">Sat 31 Oct 2026</span>
+        <span class="date" data-hy="Շբթ, 31 հոկտեմբերի 2026">Sat 31 Oct 2026</span>
         <span class="no mono">W4 6455</span>
       </div>
       <div class="leg">
         <div class="port">
           <div class="time mono">05:00</div>
-          <div class="city">Milan Malpensa</div>
+          <div class="city" data-hy="Միլան Մալպենսա">Milan Malpensa</div>
           <div class="code mono">MXP · T1</div>
         </div>
         <div class="mid">
-          <div class="dur">4h 10m</div>
+          <div class="dur" data-hy="4ժ 10ր">4h 10m</div>
           <div class="line"></div>
           <div>UTC+1 → UTC+4</div>
         </div>
         <div class="port to">
           <div class="time mono">12:10</div>
-          <div class="city">Yerevan, Zvartnots</div>
+          <div class="city" data-hy="Երևան, Զվարթնոց">Yerevan, Zvartnots</div>
           <div class="code mono">EVN</div>
         </div>
       </div>
-      <div class="flight-note warn">The second overnight at Malpensa — in around 23:30, out at 05:00. Return half of the same booking as the outbound flight.</div>
+      <div class="flight-note warn" data-hy="Երկրորդ գիշերը Մալպենսայում՝ մոտ 23:30-ից մինչև 05:00։ Նույն ամրագրման վերադարձի հատվածն է։">The second overnight at Malpensa — in around 23:30, out at 05:00. Return half of the same booking as the outbound flight.</div>
     </div>
   </div>
 </section>
 
 <section id="stays">
   <div class="container">
-    <div class="sec-head"><span class="num">02</span><h2>Stays</h2></div>
+    <div class="sec-head"><span class="num">02</span><h2 data-hy="Կացարաններ">Stays</h2></div>
+
     <div class="stay">
       <div class="stay-top">
-        <span class="city">Madrid</span>
-        <span class="when">Thu 22 – Sun 25 Oct · 3 nights</span>
+        <span class="city" data-hy="Մադրիդ">Madrid</span>
+        <span class="when" data-hy="22 հոկ – 25 հոկ · 3 գիշեր">Thu 22 – Sun 25 Oct · 3 nights</span>
       </div>
-      <div class="name">Moderno apartamento en Madrid climatizado — two-bedroom apartment</div>
-      <div class="addr">
+      <div class="name" data-hy="Moderno apartamento en Madrid climatizado — երկսենյակ բնակարան">Moderno apartamento en Madrid climatizado — two-bedroom apartment</div>
+      <div class="addr" data-hy="C. del Camino Viejo de Leganés, 174 Bajo 10 Exterior, Carabanchel, 28025 Մադրիդ<br /><a href=&quot;https://www.google.com/maps/search/?api=1&amp;query=40.378833,-3.733067&quot;>Բացել քարտեզում</a> · <a href=&quot;tel:+34651971579&quot;>+34 651 97 15 79</a>">
         C. del Camino Viejo de Leganés, 174 Bajo 10 Exterior, Carabanchel, 28025 Madrid<br />
         <a href="https://www.google.com/maps/search/?api=1&amp;query=40.378833,-3.733067">Open in Maps</a>
         · <a href="tel:+34651971579">+34 651 97 15 79</a>
       </div>
       <div class="stay-rows">
-        <div><div class="k">Check in</div><div class="v">Thu 22, from 15:00</div></div>
-        <div><div class="k">Check out</div><div class="v">Sun 25, by 10:00</div></div>
-        <div><div class="k">Booked for</div><div class="v">3 adults, 2 children</div></div>
-        <div><div class="k">Free cancellation</div><div class="v">until 16 Oct</div></div>
+        <div><div class="k" data-hy="Մուտք">Check in</div><div class="v" data-hy="22 հոկ, 15:00-ից">Thu 22, from 15:00</div></div>
+        <div><div class="k" data-hy="Ելք">Check out</div><div class="v" data-hy="25 հոկ, մինչև 10:00">Sun 25, by 10:00</div></div>
+        <div><div class="k" data-hy="Ամրագրված է">Booked for</div><div class="v" data-hy="3 մեծահասակ, 2 երեխա">3 adults, 2 children</div></div>
+        <div><div class="k" data-hy="Անվճար չեղարկում">Free cancellation</div><div class="v" data-hy="մինչև 16 հոկ">until 16 Oct</div></div>
       </div>
       <div class="chips">
-        <span>2 bedrooms</span><span>Private bathroom</span><span>Air conditioning</span>
-        <span>Kitchen</span><span>Washing machine</span><span>Free WiFi</span><span>Free parking nearby</span>
+        <span data-hy="2 ննջասենյակ">2 bedrooms</span><span data-hy="Առանձին սանհանգույց">Private bathroom</span><span data-hy="Օդորակիչ">Air conditioning</span>
+        <span data-hy="Խոհանոց">Kitchen</span><span data-hy="Լվացքի մեքենա">Washing machine</span><span data-hy="Անվճար WiFi">Free WiFi</span><span data-hy="Անվճար կայանատեղի մոտակայքում">Free parking nearby</span>
       </div>
-      <div class="note warn">
+      <div class="note warn" data-hy="Երկու սեղմ պահ։ <strong>Ժամանում.</strong> չվերթը Բարախասում վայրէջք է կատարում մոտ 08:55-ին, բայց մուտքը միայն 15:00-ից է։ Տանտիրոջը հայտնված ժամը 11:00–12:00 է, ուստի արժե հարցնել վաղ մուտքի կամ ուղեբեռը թողնելու մասին։ <strong>Մեկնում.</strong> ելքը 10:00-ին է, իսկ Լիսաբոնի ավտոբուսը նույնպես 10:00-ին՝ քաղաքի մյուս ծայրից՝ Méndez Álvaro-ից։ Ծրագրեք դուրս գալ 08:45-ին։">
         Two tight edges. <strong>Arriving:</strong> the flight lands at Barajas around 08:55 but check-in is not until 15:00 — the property has been told 11:00–12:00, so worth asking about early check-in or leaving the bags.
         <strong>Leaving:</strong> check-out is 10:00 and the Lisbon coach also leaves at 10:00, from Méndez Álvaro across the city — plan on being out by 08:45.
       </div>
@@ -414,122 +437,122 @@
 
     <div class="stay todo">
       <div class="stay-top">
-        <span class="city">Lisbon</span>
-        <span class="when">from Sun 25 Oct</span>
+        <span class="city" data-hy="Լիսաբոն">Lisbon</span>
+        <span class="when" data-hy="25 հոկտեմբերից">from Sun 25 Oct</span>
       </div>
-      <div class="addr">Not booked yet — the coach arrives at Oriente station 16:00.</div>
+      <div class="addr" data-hy="Դեռ ամրագրված չէ — ավտոբուսը հասնում է Օրիենտե կայան 16:00-ին։">Not booked yet — the coach arrives at Oriente station 16:00.</div>
     </div>
 
     <div class="stay todo">
       <div class="stay-top">
-        <span class="city">Porto</span>
-        <span class="when">until Fri 30 Oct</span>
+        <span class="city" data-hy="Պորտու">Porto</span>
+        <span class="when" data-hy="մինչև 30 հոկտեմբերի">until Fri 30 Oct</span>
       </div>
-      <div class="addr">Not booked yet — flight out of Porto at 19:55.</div>
+      <div class="addr" data-hy="Դեռ ամրագրված չէ — Պորտուից չվերթը 19:55-ին է։">Not booked yet — flight out of Porto at 19:55.</div>
     </div>
   </div>
 </section>
 
 <section id="plan">
   <div class="container">
-    <div class="sec-head"><span class="num">03</span><h2>Day by day</h2></div>
+    <div class="sec-head"><span class="num">03</span><h2 data-hy="Օր առ օր">Day by day</h2></div>
     <div class="legend">
-      <span><i class="fix"></i>Travel day — times are fixed</span>
-      <span><i class="op"></i>Open day — plans to be filled in</span>
+      <span data-hy="<i class=&quot;fix&quot;></i>Ճանապարհի օր — ժամերը ֆիքսված են"><i class="fix"></i>Travel day — times are fixed</span>
+      <span data-hy="<i class=&quot;op&quot;></i>Ազատ օր — պլանները լրացվելու են"><i class="op"></i>Open day — plans to be filled in</span>
     </div>
 
     <!-- ===== Wed 21 Oct ===== -->
     <div class="day moves">
-      <div class="day-head"><span class="dow">Wednesday</span><span class="dnum">21 Oct</span><span class="where">Yerevan → Milan</span></div>
+      <div class="day-head"><span class="dow" data-hy="Չորեքշաբթի">Wednesday</span><span class="dnum" data-hy="21 հոկ">21 Oct</span><span class="where" data-hy="Երևան → Միլան">Yerevan → Milan</span></div>
       <div class="d-items">
-        <div class="d-item"><div class="t soft">day</div><div><div class="w">Last day at home</div><div class="s">Packing and any final errands — the flight is not until late evening.</div></div></div>
-        <div class="d-item"><div class="t">20:30</div><div><div class="w">At Zvartnots</div><div class="s">Bag drop and check-in for W4 6456.</div></div></div>
-        <div class="d-item"><div class="t">22:35</div><div><div class="w">Fly to Milan Malpensa</div><div class="s">W4 6456 · 4h 35m · lands 01:10.</div></div></div>
+        <div class="d-item"><div class="t soft" data-hy="օրը">day</div><div><div class="w" data-hy="Վերջին օրը տանը">Last day at home</div><div class="s" data-hy="Ճամպրուկներ և վերջին գործեր — չվերթը միայն ուշ երեկոյան է։">Packing and any final errands — the flight is not until late evening.</div></div></div>
+        <div class="d-item"><div class="t">20:30</div><div><div class="w" data-hy="Զվարթնոցում">At Zvartnots</div><div class="s" data-hy="Ուղեբեռի ընդունում և գրանցում W4 6456-ի համար։">Bag drop and check-in for W4 6456.</div></div></div>
+        <div class="d-item"><div class="t">22:35</div><div><div class="w" data-hy="Թռիչք Միլան Մալպենսա">Fly to Milan Malpensa</div><div class="s" data-hy="W4 6456 · 4ժ 35ր · վայրէջք 01:10։">W4 6456 · 4h 35m · lands 01:10.</div></div></div>
       </div>
     </div>
 
     <!-- ===== Thu 22 Oct ===== -->
     <div class="day moves">
-      <div class="day-head"><span class="dow">Thursday</span><span class="dnum">22 Oct</span><span class="where">Milan → Madrid</span></div>
+      <div class="day-head"><span class="dow" data-hy="Հինգշաբթի">Thursday</span><span class="dnum" data-hy="22 հոկ">22 Oct</span><span class="where" data-hy="Միլան → Մադրիդ">Milan → Madrid</span></div>
       <div class="d-items">
-        <div class="d-item"><div class="t">01:10</div><div><div class="w">Land Malpensa, Terminal 1</div></div></div>
-        <div class="d-item alert"><div class="t">01:10<br />06:40</div><div><div class="w">Overnight in Terminal 1</div><div class="s">Around 5½ hours. Bag drop for Madrid opens roughly 04:40.</div></div></div>
-        <div class="d-item"><div class="t">06:40</div><div><div class="w">Fly to Madrid</div><div class="s">W4 6311 · lands Barajas around 08:55.</div></div></div>
-        <div class="d-item alert"><div class="t">11:00</div><div><div class="w">Reach the apartment</div><div class="s">The time given to the property — but check-in is 15:00, so ask about early entry or leaving the bags.</div></div></div>
-        <div class="d-item"><div class="t">15:00</div><div><div class="w">Check in, Carabanchel</div></div></div>
+        <div class="d-item"><div class="t">01:10</div><div><div class="w" data-hy="Վայրէջք Մալպենսա, Տերմինալ 1">Land Malpensa, Terminal 1</div></div></div>
+        <div class="d-item alert"><div class="t">01:10<br />06:40</div><div><div class="w" data-hy="Գիշերը Տերմինալ 1-ում">Overnight in Terminal 1</div><div class="s" data-hy="Մոտ 5½ ժամ։ Մադրիդի ուղեբեռի ընդունումը բացվում է մոտ 04:40-ին։">Around 5½ hours. Bag drop for Madrid opens roughly 04:40.</div></div></div>
+        <div class="d-item"><div class="t">06:40</div><div><div class="w" data-hy="Թռիչք Մադրիդ">Fly to Madrid</div><div class="s" data-hy="W4 6311 · վայրէջք Բարախասում մոտ 08:55-ին։">W4 6311 · lands Barajas around 08:55.</div></div></div>
+        <div class="d-item alert"><div class="t">11:00</div><div><div class="w" data-hy="Հասնել բնակարան">Reach the apartment</div><div class="s" data-hy="Տանտիրոջը հայտնված ժամը — բայց մուտքը 15:00-ից է, ուստի հարցրեք վաղ մուտքի կամ ուղեբեռը թողնելու մասին։">The time given to the property — but check-in is 15:00, so ask about early entry or leaving the bags.</div></div></div>
+        <div class="d-item"><div class="t">15:00</div><div><div class="w" data-hy="Մուտք, Կարաբանչել">Check in, Carabanchel</div></div></div>
       </div>
-      <div class="d-open" style="margin-top:8px">Rest of the day and evening — open. Probably a gentle one after a night in an airport.</div>
+      <div class="d-open after" data-hy="Օրվա մնացած մասը և երեկոն — ազատ։ Հավանաբար հանգիստ, օդանավակայանում գիշերելուց հետո։">Rest of the day and evening — open. Probably a gentle one after a night in an airport.</div>
     </div>
 
     <!-- ===== Fri 23 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Friday</span><span class="dnum">23 Oct</span><span class="where">Madrid</span></div>
-      <div class="d-open">Full day in Madrid — nothing planned yet.</div>
+      <div class="day-head"><span class="dow" data-hy="Ուրբաթ">Friday</span><span class="dnum" data-hy="23 հոկ">23 Oct</span><span class="where" data-hy="Մադրիդ">Madrid</span></div>
+      <div class="d-open" data-hy="Ամբողջ օրը Մադրիդում — դեռ ոչինչ պլանավորված չէ։">Full day in Madrid — nothing planned yet.</div>
     </div>
 
     <!-- ===== Sat 24 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Saturday</span><span class="dnum">24 Oct</span><span class="where">Madrid</span></div>
-      <div class="d-open">Full day in Madrid — nothing planned yet.</div>
+      <div class="day-head"><span class="dow" data-hy="Շաբաթ">Saturday</span><span class="dnum" data-hy="24 հոկ">24 Oct</span><span class="where" data-hy="Մադրիդ">Madrid</span></div>
+      <div class="d-open" data-hy="Ամբողջ օրը Մադրիդում — դեռ ոչինչ պլանավորված չէ։">Full day in Madrid — nothing planned yet.</div>
     </div>
 
     <!-- ===== Sun 25 Oct ===== -->
     <div class="day moves">
-      <div class="day-head"><span class="dow">Sunday</span><span class="dnum">25 Oct</span><span class="where">Madrid → Lisbon</span></div>
+      <div class="day-head"><span class="dow" data-hy="Կիրակի">Sunday</span><span class="dnum" data-hy="25 հոկ">25 Oct</span><span class="where" data-hy="Մադրիդ → Լիսաբոն">Madrid → Lisbon</span></div>
       <div class="d-items">
-        <div class="d-item alert"><div class="t">03:00</div><div><div class="w">Clocks go back an hour</div><div class="s">Overnight, across Europe. An extra hour in bed.</div></div></div>
-        <div class="d-item alert"><div class="t">08:45</div><div><div class="w">Leave the apartment</div><div class="s">Check-out is 10:00, but the coach also leaves at 10:00 — Carabanchel to Méndez Álvaro is 25–30 min.</div></div></div>
-        <div class="d-item"><div class="t">10:00</div><div><div class="w">Coach to Lisbon</div><div class="s">BlaBlaCar Bus 3186 from Estación Sur · seats 20A–20E.</div></div></div>
-        <div class="d-item"><div class="t">16:00</div><div><div class="w">Arrive Lisbon Oriente</div><div class="s">Platform 28c. Seven hours on the road with the time change.</div></div></div>
+        <div class="d-item alert"><div class="t">03:00</div><div><div class="w" data-hy="Ժամացույցները հետ են տարվում մեկ ժամ">Clocks go back an hour</div><div class="s" data-hy="Գիշերը, ամբողջ Եվրոպայում։ Մեկ ժամ ավելի քուն։">Overnight, across Europe. An extra hour in bed.</div></div></div>
+        <div class="d-item alert"><div class="t">08:45</div><div><div class="w" data-hy="Դուրս գալ բնակարանից">Leave the apartment</div><div class="s" data-hy="Ելքը 10:00-ին է, բայց ավտոբուսը նույնպես 10:00-ին. Կարաբանչելից Méndez Álvaro 25–30 րոպե է։">Check-out is 10:00, but the coach also leaves at 10:00 — Carabanchel to Méndez Álvaro is 25–30 min.</div></div></div>
+        <div class="d-item"><div class="t">10:00</div><div><div class="w" data-hy="Ավտոբուս Լիսաբոն">Coach to Lisbon</div><div class="s" data-hy="BlaBlaCar Bus 3186՝ Estación Sur-ից · տեղեր 20A–20E։">BlaBlaCar Bus 3186 from Estación Sur · seats 20A–20E.</div></div></div>
+        <div class="d-item"><div class="t">16:00</div><div><div class="w" data-hy="Ժամանում Լիսաբոն Օրիենտե">Arrive Lisbon Oriente</div><div class="s" data-hy="Հարթակ 28c։ Յոթ ժամ ճանապարհին՝ ժամային փոփոխության պատճառով։">Platform 28c. Seven hours on the road with the time change.</div></div></div>
       </div>
-      <div class="d-open" style="margin-top:8px">Evening in Lisbon — open. Something close by and easy.</div>
+      <div class="d-open after" data-hy="Երեկոն Լիսաբոնում — ազատ։ Ինչ-որ մոտիկ և հանգիստ։">Evening in Lisbon — open. Something close by and easy.</div>
     </div>
 
     <!-- ===== Mon 26 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Monday</span><span class="dnum">26 Oct</span><span class="where">Lisbon</span></div>
-      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+      <div class="day-head"><span class="dow" data-hy="Երկուշաբթի">Monday</span><span class="dnum" data-hy="26 հոկ">26 Oct</span><span class="where" data-hy="Լիսաբոն">Lisbon</span></div>
+      <div class="d-open" data-hy="Ամբողջ օրը Լիսաբոնում — դեռ ոչինչ պլանավորված չէ։">Full day in Lisbon — nothing planned yet.</div>
     </div>
 
     <!-- ===== Tue 27 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Tuesday</span><span class="dnum">27 Oct</span><span class="where">Lisbon</span></div>
-      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+      <div class="day-head"><span class="dow" data-hy="Երեքշաբթի">Tuesday</span><span class="dnum" data-hy="27 հոկ">27 Oct</span><span class="where" data-hy="Լիսաբոն">Lisbon</span></div>
+      <div class="d-open" data-hy="Ամբողջ օրը Լիսաբոնում — դեռ ոչինչ պլանավորված չէ։">Full day in Lisbon — nothing planned yet.</div>
     </div>
 
     <!-- ===== Wed 28 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Wednesday</span><span class="dnum">28 Oct</span><span class="where">Lisbon</span></div>
-      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+      <div class="day-head"><span class="dow" data-hy="Չորեքշաբթի">Wednesday</span><span class="dnum" data-hy="28 հոկ">28 Oct</span><span class="where" data-hy="Լիսաբոն">Lisbon</span></div>
+      <div class="d-open" data-hy="Ամբողջ օրը Լիսաբոնում — դեռ ոչինչ պլանավորված չէ։">Full day in Lisbon — nothing planned yet.</div>
     </div>
 
     <!-- ===== Thu 29 Oct ===== -->
     <div class="day">
-      <div class="day-head"><span class="dow">Thursday</span><span class="dnum">29 Oct</span><span class="where">Lisbon → Porto</span></div>
+      <div class="day-head"><span class="dow" data-hy="Հինգշաբթի">Thursday</span><span class="dnum" data-hy="29 հոկ">29 Oct</span><span class="where" data-hy="Լիսաբոն → Պորտու">Lisbon → Porto</span></div>
       <div class="d-items">
-        <div class="d-item alert"><div class="t soft">TBD</div><div><div class="w">Move up to Porto</div><div class="s">Not booked. Alfa Pendular from Lisboa Oriente takes about 3h. This day is a guess — the Lisbon/Porto split is still open, so it could just as easily be the 28th or the 30th.</div></div></div>
+        <div class="d-item alert"><div class="t soft" data-hy="պարզելու">TBD</div><div><div class="w" data-hy="Տեղափոխվել Պորտու">Move up to Porto</div><div class="s" data-hy="Ամրագրված չէ։ Alfa Pendular-ը Lisboa Oriente-ից տանում է մոտ 3 ժամում։ Այս օրը ենթադրություն է — Լիսաբոն/Պորտու բաշխումը դեռ բաց է, ուստի կարող է լինել նաև 28-ը կամ 30-ը։">Not booked. Alfa Pendular from Lisboa Oriente takes about 3h. This day is a guess — the Lisbon/Porto split is still open, so it could just as easily be the 28th or the 30th.</div></div></div>
       </div>
-      <div class="d-open" style="margin-top:8px">Rest of the day — open.</div>
+      <div class="d-open after" data-hy="Օրվա մնացած մասը — ազատ։">Rest of the day — open.</div>
     </div>
 
     <!-- ===== Fri 30 Oct ===== -->
     <div class="day moves">
-      <div class="day-head"><span class="dow">Friday</span><span class="dnum">30 Oct</span><span class="where">Porto → Milan</span></div>
+      <div class="day-head"><span class="dow" data-hy="Ուրբաթ">Friday</span><span class="dnum" data-hy="30 հոկ">30 Oct</span><span class="where" data-hy="Պորտու → Միլան">Porto → Milan</span></div>
       <div class="d-items">
-        <div class="d-item"><div class="t soft">day</div><div><div class="w">Last day in Porto</div><div class="s">Check out in the morning; the flight is not until the evening, so there is a full day to use.</div></div></div>
-        <div class="d-item"><div class="t">17:00</div><div><div class="w">At Porto airport</div></div></div>
-        <div class="d-item"><div class="t">19:55</div><div><div class="w">Fly to Milan Malpensa</div><div class="s">Lands around 23:30 — the clock jumps forward two hours in the air.</div></div></div>
+        <div class="d-item"><div class="t soft" data-hy="օրը">day</div><div><div class="w" data-hy="Վերջին օրը Պորտուում">Last day in Porto</div><div class="s" data-hy="Առավոտյան ելք. չվերթը միայն երեկոյան է, ուստի ամբողջ օրը կա։">Check out in the morning; the flight is not until the evening, so there is a full day to use.</div></div></div>
+        <div class="d-item"><div class="t">17:00</div><div><div class="w" data-hy="Պորտուի օդանավակայանում">At Porto airport</div></div></div>
+        <div class="d-item"><div class="t">19:55</div><div><div class="w" data-hy="Թռիչք Միլան Մալպենսա">Fly to Milan Malpensa</div><div class="s" data-hy="Վայրէջք մոտ 23:30-ին — օդում ժամացույցը երկու ժամ առաջ է թռչում։">Lands around 23:30 — the clock jumps forward two hours in the air.</div></div></div>
       </div>
-      <div class="d-open" style="margin-top:8px">Daytime in Porto — open.</div>
+      <div class="d-open after" data-hy="Ցերեկը Պորտուում — ազատ։">Daytime in Porto — open.</div>
     </div>
 
     <!-- ===== Sat 31 Oct ===== -->
     <div class="day moves">
-      <div class="day-head"><span class="dow">Saturday</span><span class="dnum">31 Oct</span><span class="where">Milan → home</span></div>
+      <div class="day-head"><span class="dow" data-hy="Շաբաթ">Saturday</span><span class="dnum" data-hy="31 հոկ">31 Oct</span><span class="where" data-hy="Միլան → տուն">Milan → home</span></div>
       <div class="d-items">
-        <div class="d-item alert"><div class="t">23:30<br />05:00</div><div><div class="w">Second overnight in Terminal 1</div><div class="s">Around 5½ hours again, straight off the Porto flight.</div></div></div>
-        <div class="d-item"><div class="t">05:00</div><div><div class="w">Fly to Yerevan</div><div class="s">W4 6455 · 4h 10m.</div></div></div>
-        <div class="d-item"><div class="t">12:10</div><div><div class="w">Home</div><div class="s">Land at Zvartnots.</div></div></div>
+        <div class="d-item alert"><div class="t">23:30<br />05:00</div><div><div class="w" data-hy="Երկրորդ գիշերը Տերմինալ 1-ում">Second overnight in Terminal 1</div><div class="s" data-hy="Կրկին մոտ 5½ ժամ, ուղիղ Պորտուի չվերթից հետո։">Around 5½ hours again, straight off the Porto flight.</div></div></div>
+        <div class="d-item"><div class="t">05:00</div><div><div class="w" data-hy="Թռիչք Երևան">Fly to Yerevan</div><div class="s" data-hy="W4 6455 · 4ժ 10ր։">W4 6455 · 4h 10m.</div></div></div>
+        <div class="d-item"><div class="t">12:10</div><div><div class="w" data-hy="Տուն">Home</div><div class="s" data-hy="Վայրէջք Զվարթնոցում։">Land at Zvartnots.</div></div></div>
       </div>
     </div>
   </div>
@@ -537,32 +560,32 @@
 
 <section id="notes">
   <div class="container">
-    <div class="sec-head"><span class="num">04</span><h2>Good to know</h2></div>
+    <div class="sec-head"><span class="num">04</span><h2 data-hy="Օգտակար է իմանալ">Good to know</h2></div>
     <div class="cards">
       <div class="card">
-        <span class="tag">Time</span>
-        <h4>Three clocks</h4>
-        <p>Yerevan runs 2h ahead of Madrid, and Portugal an hour behind Spain. Clocks go back across Europe on Sun 25 Oct — the same day as the Lisbon coach.</p>
+        <span class="tag" data-hy="Ժամանակ">Time</span>
+        <h4 data-hy="Երեք ժամացույց">Three clocks</h4>
+        <p data-hy="Երևանը 2ժ առաջ է Մադրիդից, իսկ Պորտուգալիան մեկ ժամ հետ է Իսպանիայից։ Ժամացույցները ամբողջ Եվրոպայում հետ են տարվում կիրակի, 25 հոկտեմբերի — Լիսաբոնի ավտոբուսի օրը։">Yerevan runs 2h ahead of Madrid, and Portugal an hour behind Spain. Clocks go back across Europe on Sun 25 Oct — the same day as the Lisbon coach.</p>
       </div>
       <div class="card">
-        <span class="tag">Emergency</span>
-        <h4>112 everywhere</h4>
-        <p>One number for police, fire and ambulance across Spain, Portugal and Italy, free from any phone. Madrid apartment: <a href="tel:+34651971579">+34 651 97 15 79</a>.</p>
+        <span class="tag" data-hy="Շտապ օգնություն">Emergency</span>
+        <h4 data-hy="112 ամենուր">112 everywhere</h4>
+        <p data-hy="Մեկ համար՝ ոստիկանություն, հրշեջ և շտապօգնություն Իսպանիայում, Պորտուգալիայում և Իտալիայում, անվճար ցանկացած հեռախոսից։ Մադրիդի բնակարան՝ <a href=&quot;tel:+34651971579&quot;>+34 651 97 15 79</a>։">One number for police, fire and ambulance across Spain, Portugal and Italy, free from any phone. Madrid apartment: <a href="tel:+34651971579">+34 651 97 15 79</a>.</p>
       </div>
       <div class="card">
-        <span class="tag">Money</span>
-        <h4>Euro throughout</h4>
-        <p>Italy, Spain and Portugal are all euro. Cards are accepted almost everywhere; small cash is handy for Porto.</p>
+        <span class="tag" data-hy="Փող">Money</span>
+        <h4 data-hy="Ամենուր եվրո">Euro throughout</h4>
+        <p data-hy="Իտալիան, Իսպանիան և Պորտուգալիան բոլորն էլ եվրոյով են։ Քարտերն ընդունվում են գրեթե ամենուր. Պորտուում հարմար է քիչ կանխիկ ունենալ։">Italy, Spain and Portugal are all euro. Cards are accepted almost everywhere; small cash is handy for Porto.</p>
       </div>
       <div class="card">
-        <span class="tag">Bags</span>
-        <h4>Wizz cabin rules</h4>
-        <p>Three Wizz bookings covering four flights, for five people — the allowance is per booking, so worth checking each one before check-in.</p>
+        <span class="tag" data-hy="Ուղեբեռ">Bags</span>
+        <h4 data-hy="Wizz-ի ուղեբեռի կանոններ">Wizz cabin rules</h4>
+        <p data-hy="Երեք Wizz ամրագրում՝ չորս չվերթի համար, հինգ հոգու։ Նորման ամրագրման հաշվով է, ուստի արժե ստուգել յուրաքանչյուրը գրանցումից առաջ։">Three Wizz bookings covering four flights, for five people — the allowance is per booking, so worth checking each one before check-in.</p>
       </div>
       <div class="card">
-        <span class="tag">Airport</span>
-        <h4>Two nights in T1</h4>
-        <p>Every Wizz flight uses Terminal 1, so no transfers — but both Malpensa layovers are overnight, roughly 01:10–06:40 on the way out and 23:30–05:00 on the way back.</p>
+        <span class="tag" data-hy="Օդանավակայան">Airport</span>
+        <h4 data-hy="Երկու գիշեր T1-ում">Two nights in T1</h4>
+        <p data-hy="Բոլոր Wizz չվերթերը Տերմինալ 1-ից են, ուստի փոխանցումներ չկան — բայց Մալպենսայի երկու սպասումն էլ գիշերով է՝ մոտավորապես 01:10–06:40 ճանապարհին և 23:30–05:00 վերադարձին։">Every Wizz flight uses Terminal 1, so no transfers — but both Malpensa layovers are overnight, roughly 01:10–06:40 on the way out and 23:30–05:00 on the way back.</p>
       </div>
     </div>
   </div>
@@ -570,31 +593,75 @@
 
 <section id="packing">
   <div class="container">
-    <div class="sec-head"><span class="num">05</span><h2>Packing</h2></div>
+    <div class="sec-head"><span class="num">05</span><h2 data-hy="Ճամպրուկ">Packing</h2></div>
     <ul class="checklist">
-      <li><input type="checkbox" id="p1" /><label for="p1">Passport</label></li>
-      <li><input type="checkbox" id="p2" /><label for="p2">Schengen visa / residence card</label></li>
-      <li><input type="checkbox" id="p3" /><label for="p3">Boarding passes (all 3 bookings)</label></li>
-      <li><input type="checkbox" id="p4" /><label for="p4">Travel insurance</label></li>
-      <li><input type="checkbox" id="p5" /><label for="p5">Cards + some euro cash</label></li>
-      <li><input type="checkbox" id="p6" /><label for="p6">Phone charger + power bank</label></li>
-      <li><input type="checkbox" id="p7" /><label for="p7">Type C / F plug adapter</label></li>
-      <li><input type="checkbox" id="p8" /><label for="p8">Neck pillow + eye mask (MXP overnight)</label></li>
-      <li><input type="checkbox" id="p9" /><label for="p9">Light rain jacket</label></li>
-      <li><input type="checkbox" id="p10" /><label for="p10">Comfortable walking shoes</label></li>
-      <li><input type="checkbox" id="p11" /><label for="p11">Meds</label></li>
-      <li><input type="checkbox" id="p12" /><label for="p12">Laptop + charger</label></li>
+      <li><input type="checkbox" id="p1" /><label for="p1" data-hy="Անձնագիր">Passport</label></li>
+      <li><input type="checkbox" id="p2" /><label for="p2" data-hy="Շենգենի վիզա / կացության քարտ">Schengen visa / residence card</label></li>
+      <li><input type="checkbox" id="p3" /><label for="p3" data-hy="Նստեցման տոմսեր (բոլոր 3 ամրագրումները)">Boarding passes (all 3 bookings)</label></li>
+      <li><input type="checkbox" id="p4" /><label for="p4" data-hy="Ճամփորդական ապահովագրություն">Travel insurance</label></li>
+      <li><input type="checkbox" id="p5" /><label for="p5" data-hy="Քարտեր + մի քիչ եվրո կանխիկ">Cards + some euro cash</label></li>
+      <li><input type="checkbox" id="p6" /><label for="p6" data-hy="Հեռախոսի լիցքավորիչ + power bank">Phone charger + power bank</label></li>
+      <li><input type="checkbox" id="p7" /><label for="p7" data-hy="C / F տիպի ադապտեր">Type C / F plug adapter</label></li>
+      <li><input type="checkbox" id="p8" /><label for="p8" data-hy="Պարանոցի բարձ + աչքի դիմակ (MXP-ի գիշեր)">Neck pillow + eye mask (MXP overnight)</label></li>
+      <li><input type="checkbox" id="p9" /><label for="p9" data-hy="Թեթև անձրևանոց">Light rain jacket</label></li>
+      <li><input type="checkbox" id="p10" /><label for="p10" data-hy="Հարմար քայլելու կոշիկներ">Comfortable walking shoes</label></li>
+      <li><input type="checkbox" id="p11" /><label for="p11" data-hy="Դեղեր">Meds</label></li>
+      <li><input type="checkbox" id="p12" /><label for="p12" data-hy="Նոութբուք + լիցքավորիչ">Laptop + charger</label></li>
     </ul>
   </div>
 </section>
 
 <footer>
-  <div class="container">
+  <div class="container" data-hy="Ճամփորդության նշումներ · <a href=&quot;/&quot;>usta.am</a>">
     Trip notes · <a href="/">usta.am</a>
   </div>
 </footer>
 
 <script>
+// Language switch. Every translatable element carries data-hy; the English
+// original is captured from the markup on load, so nothing is duplicated
+// in a dictionary. Elements with data-hy are never nested inside each other.
+(function () {
+  var KEY = 'usta-trip-lang';
+  var nodes = document.querySelectorAll('[data-hy]');
+  var buttons = document.querySelectorAll('.lang button');
+  var titles = {
+    en: document.title,
+    hy: document.documentElement.getAttribute('data-title-hy') || document.title
+  };
+
+  Array.prototype.forEach.call(nodes, function (n) {
+    n.setAttribute('data-en', n.innerHTML);
+  });
+
+  function apply(lang) {
+    var attr = lang === 'hy' ? 'data-hy' : 'data-en';
+    Array.prototype.forEach.call(nodes, function (n) {
+      n.innerHTML = n.getAttribute(attr);
+    });
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+    Array.prototype.forEach.call(buttons, function (b) {
+      var on = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+
+  Array.prototype.forEach.call(buttons, function (b) {
+    b.addEventListener('click', function () { apply(b.getAttribute('data-lang')); });
+  });
+
+  var start = null;
+  try { start = localStorage.getItem(KEY); } catch (e) {}
+  if (start !== 'en' && start !== 'hy') {
+    // No stored choice: follow the browser, defaulting to English.
+    start = (navigator.language || '').toLowerCase().indexOf('hy') === 0 ? 'hy' : 'en';
+  }
+  apply(start);
+})();
+
 // Remember packing ticks in whoever's browser opens the page.
 (function () {
   var KEY = 'usta-trip-packing', saved = {};
