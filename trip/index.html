@@ -121,6 +121,34 @@
   .gap { border: 1px dashed var(--border); border-radius: var(--radius); padding: 15px 20px; margin-bottom: 14px; color: var(--text-muted); font-size: 14px; background: rgba(255,255,255,.012); }
   .gap strong { color: var(--text); font-weight: 600; }
 
+  /* ---------- day by day ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; color: var(--text-dim); font-size: 12.5px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .legend i.fix { background: var(--accent); }
+  .legend i.op { background: transparent; border: 1px solid var(--text-dim); }
+
+  .day { position: relative; padding: 0 0 20px 30px; border-left: 1px solid var(--border); }
+  .day:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .day::before { content: ''; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--text-dim); }
+  .day.moves::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(97,218,251,.12); }
+  .day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 9px; margin-bottom: 11px; }
+  .day-head .dow { font-family: 'Sora',sans-serif; font-size: 17px; font-weight: 700; }
+  .day-head .dnum { color: var(--text-dim); font-size: 13px; font-weight: 600; }
+  .day-head .where { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border); background: var(--bg-card); padding: 2px 10px; border-radius: 999px; }
+  .day.moves .day-head .where { color: var(--accent); }
+
+  .d-items { display: grid; gap: 8px; }
+  .d-item { display: grid; grid-template-columns: 62px 1fr; gap: 13px; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius-sm); padding: 11px 14px; }
+  .d-item .t { color: var(--accent-2); font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 600; padding-top: 1px; }
+  .d-item .t.soft { color: var(--text-dim); }
+  .d-item .w { font-weight: 600; font-size: 14.5px; }
+  .d-item .s { color: var(--text-muted); font-size: 13px; margin-top: 1px; }
+  .d-item.alert { border-color: rgba(251,191,36,.32); }
+  .d-item.alert .t { color: var(--warn); }
+  @media (max-width: 560px){ .d-item { grid-template-columns: 1fr; gap: 3px; } }
+
+  .d-open { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 11px 14px; color: var(--text-dim); font-size: 13.5px; font-style: italic; background: rgba(255,255,255,.01); }
+
   /* ---------- stays ---------- */
   .stay { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
   .stay.todo { border-style: dashed; background: rgba(255,255,255,.012); }
@@ -405,7 +433,105 @@
 <section id="plan">
   <div class="container">
     <div class="sec-head"><span class="num">03</span><h2>Day by day</h2></div>
-    <p class="soon">The day-by-day plan goes here once the details land.</p>
+    <div class="legend">
+      <span><i class="fix"></i>Travel day — times are fixed</span>
+      <span><i class="op"></i>Open day — plans to be filled in</span>
+    </div>
+
+    <!-- ===== Wed 21 Oct ===== -->
+    <div class="day moves">
+      <div class="day-head"><span class="dow">Wednesday</span><span class="dnum">21 Oct</span><span class="where">Yerevan → Milan</span></div>
+      <div class="d-items">
+        <div class="d-item"><div class="t soft">day</div><div><div class="w">Last day at home</div><div class="s">Packing and any final errands — the flight is not until late evening.</div></div></div>
+        <div class="d-item"><div class="t">20:30</div><div><div class="w">At Zvartnots</div><div class="s">Bag drop and check-in for W4 6456.</div></div></div>
+        <div class="d-item"><div class="t">22:35</div><div><div class="w">Fly to Milan Malpensa</div><div class="s">W4 6456 · 4h 35m · lands 01:10.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Thu 22 Oct ===== -->
+    <div class="day moves">
+      <div class="day-head"><span class="dow">Thursday</span><span class="dnum">22 Oct</span><span class="where">Milan → Madrid</span></div>
+      <div class="d-items">
+        <div class="d-item"><div class="t">01:10</div><div><div class="w">Land Malpensa, Terminal 1</div></div></div>
+        <div class="d-item alert"><div class="t">01:10<br />06:40</div><div><div class="w">Overnight in Terminal 1</div><div class="s">Around 5½ hours. Bag drop for Madrid opens roughly 04:40.</div></div></div>
+        <div class="d-item"><div class="t">06:40</div><div><div class="w">Fly to Madrid</div><div class="s">W4 6311 · lands Barajas around 08:55.</div></div></div>
+        <div class="d-item alert"><div class="t">11:00</div><div><div class="w">Reach the apartment</div><div class="s">The time given to the property — but check-in is 15:00, so ask about early entry or leaving the bags.</div></div></div>
+        <div class="d-item"><div class="t">15:00</div><div><div class="w">Check in, Carabanchel</div></div></div>
+      </div>
+      <div class="d-open" style="margin-top:8px">Rest of the day and evening — open. Probably a gentle one after a night in an airport.</div>
+    </div>
+
+    <!-- ===== Fri 23 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Friday</span><span class="dnum">23 Oct</span><span class="where">Madrid</span></div>
+      <div class="d-open">Full day in Madrid — nothing planned yet.</div>
+    </div>
+
+    <!-- ===== Sat 24 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Saturday</span><span class="dnum">24 Oct</span><span class="where">Madrid</span></div>
+      <div class="d-open">Full day in Madrid — nothing planned yet.</div>
+    </div>
+
+    <!-- ===== Sun 25 Oct ===== -->
+    <div class="day moves">
+      <div class="day-head"><span class="dow">Sunday</span><span class="dnum">25 Oct</span><span class="where">Madrid → Lisbon</span></div>
+      <div class="d-items">
+        <div class="d-item alert"><div class="t">03:00</div><div><div class="w">Clocks go back an hour</div><div class="s">Overnight, across Europe. An extra hour in bed.</div></div></div>
+        <div class="d-item alert"><div class="t">08:45</div><div><div class="w">Leave the apartment</div><div class="s">Check-out is 10:00, but the coach also leaves at 10:00 — Carabanchel to Méndez Álvaro is 25–30 min.</div></div></div>
+        <div class="d-item"><div class="t">10:00</div><div><div class="w">Coach to Lisbon</div><div class="s">BlaBlaCar Bus 3186 from Estación Sur · seats 20A–20E.</div></div></div>
+        <div class="d-item"><div class="t">16:00</div><div><div class="w">Arrive Lisbon Oriente</div><div class="s">Platform 28c. Seven hours on the road with the time change.</div></div></div>
+      </div>
+      <div class="d-open" style="margin-top:8px">Evening in Lisbon — open. Something close by and easy.</div>
+    </div>
+
+    <!-- ===== Mon 26 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Monday</span><span class="dnum">26 Oct</span><span class="where">Lisbon</span></div>
+      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+    </div>
+
+    <!-- ===== Tue 27 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Tuesday</span><span class="dnum">27 Oct</span><span class="where">Lisbon</span></div>
+      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+    </div>
+
+    <!-- ===== Wed 28 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Wednesday</span><span class="dnum">28 Oct</span><span class="where">Lisbon</span></div>
+      <div class="d-open">Full day in Lisbon — nothing planned yet.</div>
+    </div>
+
+    <!-- ===== Thu 29 Oct ===== -->
+    <div class="day">
+      <div class="day-head"><span class="dow">Thursday</span><span class="dnum">29 Oct</span><span class="where">Lisbon → Porto</span></div>
+      <div class="d-items">
+        <div class="d-item alert"><div class="t soft">TBD</div><div><div class="w">Move up to Porto</div><div class="s">Not booked. Alfa Pendular from Lisboa Oriente takes about 3h. This day is a guess — the Lisbon/Porto split is still open, so it could just as easily be the 28th or the 30th.</div></div></div>
+      </div>
+      <div class="d-open" style="margin-top:8px">Rest of the day — open.</div>
+    </div>
+
+    <!-- ===== Fri 30 Oct ===== -->
+    <div class="day moves">
+      <div class="day-head"><span class="dow">Friday</span><span class="dnum">30 Oct</span><span class="where">Porto → Milan</span></div>
+      <div class="d-items">
+        <div class="d-item"><div class="t soft">day</div><div><div class="w">Last day in Porto</div><div class="s">Check out in the morning; the flight is not until the evening, so there is a full day to use.</div></div></div>
+        <div class="d-item"><div class="t">17:00</div><div><div class="w">At Porto airport</div></div></div>
+        <div class="d-item"><div class="t">19:55</div><div><div class="w">Fly to Milan Malpensa</div><div class="s">Lands around 23:30 — the clock jumps forward two hours in the air.</div></div></div>
+      </div>
+      <div class="d-open" style="margin-top:8px">Daytime in Porto — open.</div>
+    </div>
+
+    <!-- ===== Sat 31 Oct ===== -->
+    <div class="day moves">
+      <div class="day-head"><span class="dow">Saturday</span><span class="dnum">31 Oct</span><span class="where">Milan → home</span></div>
+      <div class="d-items">
+        <div class="d-item alert"><div class="t">23:30<br />05:00</div><div><div class="w">Second overnight in Terminal 1</div><div class="s">Around 5½ hours again, straight off the Porto flight.</div></div></div>
+        <div class="d-item"><div class="t">05:00</div><div><div class="w">Fly to Yerevan</div><div class="s">W4 6455 · 4h 10m.</div></div></div>
+        <div class="d-item"><div class="t">12:10</div><div><div class="w">Home</div><div class="s">Land at Zvartnots.</div></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
